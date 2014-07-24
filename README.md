@@ -1,11 +1,11 @@
 GoogleGenomics-API-Client-.NET
 ==============================
 
-Provides a strong-typed .NET DLL for Google Genomics API queries in .NET Framework (www.microsoft.com/net <http://www.microsoft.com/net>)
+Provides a strong-typed .NET DLL for Google Genomics API queries in .NET Framework (www.microsoft.com/net)
 
 ==============
 api-client-.NET open source project created with enthusiasm on July 24, 2014 by the 
-utterly adroit bioinformatics team at Sequencing LLC (www.sequencing.com <https://www.sequencing.com>)
+utterly adroit bioinformatics team at Sequencing LLC (www.sequencing.com)
 ==============
 
 Getting started
@@ -15,7 +15,7 @@ This .NET client allows users to call the Google Genomics API using the string-t
 and also allow for deep embedding in your software development projects.
 
 •	To use, please have Visual Studio or Web Matrix (which can be obtained free from 
-http://www.microsoft.com/web/webmatrix/ <http://www.microsoft.com/web/webmatrix/> installed.
+http://www.microsoft.com/web/webmatrix/ installed.
 •	The download the project and open in either of the IDE as mentioned above.
 •	You may use the sample web project to familiarize yourself with the functionality.
 •	If you prefer to use just the binaries, however, then please copy them into your software 
