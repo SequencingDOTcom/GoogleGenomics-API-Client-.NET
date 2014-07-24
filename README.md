@@ -50,7 +50,7 @@ Project status
 
 •	Functionality to connect to and query Google Genomics is provided.
 
-•	This is an ongoing project. The bioinformatics team at Sequencing LLC <https://www.sequencing.com> will continue to add new code and we welcome the public to do the same.
+•	This is an ongoing project. The bioinformatics team at Sequencing LLC<http://www.sequencing.com> will continue to add new code and we welcome the public to do the same.
 
 Goals
 ---------------
@@ -68,7 +68,7 @@ Instead of being just a simple wrapper around API calls, the code will provide a
 
 Please file feature requests (or email us directly at bioinformatics@sequencing.com) for additional things this awesome command line can do to make your life easier!
 
-Adding new functionality or to Learn More
+Adding new functionality and to Learn More
 ---------------
 
 If you would like to see specific functionality added to this project or if you'd like to learn more about the other exciting projects at Sequencing.com, please contact the Sequencing LLC bioinformatics team by emailing bioinformatics@sequencing.com. Thank you! -Dr. Colby
