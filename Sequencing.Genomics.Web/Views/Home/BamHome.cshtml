@@ -1,0 +1,93 @@
+﻿@model IList<Google.Apis.Genomics.v1beta.Data.Dataset>
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables-1.10.0/css/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.0/jquery.dataTables.min.js"></script>
+@{
+    ViewBag.Title = "title";
+//    Layout = "Index.cshtml";
+}
+<h2>BAM slicing utility</h2>
+<strong>Available datasets</strong>
+@Html.DropDownList("datasets", Model.Select(dataset => new SelectListItem{Text = dataset.Name, Value = dataset.Id}))
+<hr/>
+<p><strong>Available readsets</strong></p>
+<table id="readsetsTable" class="display"></table>
+<hr />
+<div id="selectedReadset">
+    <strong>Selected readset:<p id="SelectedReadsetName"></p></strong>
+    @using(Html.BeginForm("CreateBamFile", "Home"))
+    {
+        @Html.Hidden("readSetName", null)
+        @Html.Hidden("readSetId", null)
+        <p>Chromosome number (1,2,3,...,X,Y) @Html.TextBox("chrNum")</p>
+        <p>Chromosome start position @Html.TextBox("chrStartPos", 1, new { type = "number" })</p>
+        <p>Chromosome end position @Html.TextBox("chrEndPos", 10000, new { type = "number" })</p>
+        <p>SAM file output @Html.CheckBox("samOutput", false)</p>
+            
+        <input type="submit" value="Create BAM" />
+        
+    }
+</div>
+
+<script>
+    var readsetsTable;
+    $(function () {
+        readsetsTable = $("#readsetsTable").dataTable({
+            aoColumns: [
+                { sTitle: "Name" },
+                { sTitle: "Id" }
+            ],
+            bProcessing: true,
+            sPaginationType: "full_numbers",
+            bServerSide: true,
+            sAjaxSource: "@Url.Action("GetReadsets")",
+            fnServerData: function (sSource, aoData, fnCallback) {
+                var dsId = $('#datasets').val();
+                aoData.push({ name: "DatasetId", value: dsId });
+                $.ajax({
+                    "dataType": 'json',
+                    "type": "POST",
+                    "url": sSource,
+                    "data": aoData,
+                    "success": function (data, textStatus, jqXhr) {
+                        fnCallback(data, textStatus, jqXhr);
+                        SelectedItemChanged();
+                    }
+                });},
+            bSort: false,
+            bFilter: false
+        });
+        $('#readsetsTable tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                readsetsTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                SelectedItemChanged();
+            }
+        });
+        $("#datasets").change(function () {
+            readsetsTable.fnDraw();
+        });
+        SelectedItemChanged();
+    });
+
+    function SelectedItemChanged() {
+        var object = readsetsTable.$('tr.selected');
+        if (object != null && object.length != 0){
+            var row = object.get(0);
+            var id = row.cells[1].innerHTML;
+            var name = row.cells[0].innerHTML;
+            $("#readSetId").val(id);
+            $("#readSetName").val(name);
+            $("#SelectedReadsetName").text(name);
+            $("#selectedReadset").show();
+        }
+        else
+            $("#selectedReadset").hide();
+    }
+</script>

@@ -1,0 +1,1152 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Bio.iOS</name>
+    </assembly>
+    <members>
+        <member name="T:Bio.IO.BAM.BAMSort">
+            <summary>
+            Class implements sorting in a SequenceAlignmentMap.
+            Sorts the data in "SequenceAlignmentMap" By
+             ChromosomeCoordinates
+             Or
+             ReadNames
+            </summary>
+        </member>
+        <member name="F:Bio.IO.BAM.BAMSort.SortedListMaxCount">
+            <summary>
+            Maximum limit of sorted bucket.
+            Write the list to file once the limit is reached.
+            The max count number is an optimized value based on local tests.
+            </summary>
+        </member>
+        <member name="F:Bio.IO.BAM.BAMSort.sequenceAlignMap">
+            <summary>
+            Holds SequenceAlignmentMap object to be sorted.
+            </summary>
+        </member>
+        <member name="F:Bio.IO.BAM.BAMSort.sortField">
+            <summary>
+            Type of sort needed.
+            </summary>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMSort.#ctor(Bio.IO.SAM.SequenceAlignmentMap,Bio.IO.BAM.BAMSortByFields)">
+            <summary>
+            Default Constructor
+            Initializes a new instance of the BAMSorter class
+            </summary>
+            <param name="seqAlignMap">SequenceAlignmentMap object to be sorted.</param>
+            <param name="sortType">Type of sort required.</param>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMSort.Sort">
+            <summary>
+            Sorts the SequenceAlignmentMap based on the sort by fields,
+            either chromosome coordinates or read names and retuns sorted BAM indexer
+            </summary>
+            <example>
+            1. Sort by chromosome name.
+            BAMSort sorter = new BAMSort([SequenceAlignmentMap], BAMSortByFields.ChromosomeCoordinates);
+            IList&lt;BAMSortedIndex&gt; sortedGroups = sorter.Sort();
+            foreach (BAMSortedIndex sortedGroup in sortedGroups)
+            {
+                sortedGroup.GroupName // Containes the RName
+                foreach (int index in sortedGroup)
+                {
+                    index // index of SequenceAlignmentMap.QuerySequences 
+                }
+            }
+            2. Sort by read name.
+            BAMSort sorter = new BAMSort([SequenceAlignmentMap], BAMSortByFields.ChromosomeCoordinates);
+            IList&lt;BAMSortedIndex&gt; sortedGroups = sorter.Sort();
+            foreach (int index in sortedGroups[0]) // There will be only Group in list.
+            {
+                index // index of SequenceAlignmentMap.QuerySequences 
+            }
+            </example>
+            <returns>sorted BAM indexer</returns>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMSort.SortByReadNames">
+            <summary>
+            Sort the index of SequenceAlignmentMap by QName.
+            Fill the index (sorted by QName) into a list, when the list size reaches
+            the maximum limit, write the list to file and clear the list.
+            </summary>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMSort.SortByChromosomeCoordinates">
+            <summary>
+            Sort the index of SequenceAlignmentMap by RName then by Pos.
+            Fill the index (sorted by RName then by Pos) into a list, when the list size reaches
+            the maximum limit, write the list to file and clear the list.
+            </summary>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMSort.WriteToFile(System.Collections.Generic.SortedList{System.Object,System.String})">
+            <summary>
+            Creates a file in Temp folder.
+            Write the data in SortedList to a file.
+            Returns the filename
+            </summary>
+            <param name="sortedList">List to be written to file.</param>
+            <returns>File name.</returns>
+        </member>
+        <member name="T:Bio.IO.BAM.BAMSortedIndex">
+            <summary>
+            This class implements indexer for Sorted BAM Index.
+            Reads
+             Index for a file (contains data sorted by index) and return index
+             Or
+             Indices from multiple file (contains data sorted by index in each file) and returns smallest index.
+            </summary>
+        </member>
+        <member name="F:Bio.IO.BAM.BAMSortedIndex.readers">
+            <summary>
+            List of file readers.
+            </summary>
+        </member>
+        <member name="F:Bio.IO.BAM.BAMSortedIndex.data">
+            <summary>
+            Next data object to processed in each file.
+            </summary>
+        </member>
+        <member name="F:Bio.IO.BAM.BAMSortedIndex.sortedFilenames">
+            <summary>
+            holds filenames (sorted files) like chr1_1, chr1_2, chr2 etc.
+            </summary>
+        </member>
+        <member name="F:Bio.IO.BAM.BAMSortedIndex.sortField">
+            <summary>
+            Field name using which data is to be sorted.
+            </summary>
+        </member>
+        <member name="F:Bio.IO.BAM.BAMSortedIndex.currentIndex">
+            <summary>
+            Holds current sorted index.
+            </summary>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMSortedIndex.#ctor(System.Collections.Generic.IList{System.String},Bio.IO.BAM.BAMSortByFields)">
+            <summary>
+            Constructor to initialize an instance of BAMSortedIndex class with specified list of filenames.
+            </summary>
+            <param name="filenames">Sorted filenames.</param>
+            <param name="sortType">Type of sort required.</param>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMSortedIndex.#ctor(System.String,Bio.IO.BAM.BAMSortByFields)">
+            <summary>
+            Constructor to initialize an instance of BAMSortedIndex class with specified filename.
+            </summary>
+            <param name="filename">Sorted filename.</param>
+            <param name="sortType">Type of sort required.</param>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMSortedIndex.Dispose">
+            <summary>
+            Disposes this object by discording any resources held.
+            </summary>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMSortedIndex.Dispose(System.Boolean)">
+            <summary>
+            Dispose field instances
+            </summary>
+            <param name="disposeManaged">If disposeManaged equals true, clean all resources</param>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMSortedIndex.MoveNext">
+            <summary>
+            Fetches next sorted index.
+            </summary>
+            <returns>Returns true on successful fetch, else return false.</returns>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMSortedIndex.Reset">
+            <summary>
+            Resets this instance to initial state.
+            </summary>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMSortedIndex.GetEnumerator">
+            <summary>
+            Returns the enumerator object
+            </summary>
+            <returns>enumerator object</returns>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMSortedIndex.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns the enumerator object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bio.IO.BAM.BAMSortedIndex.GroupName">
+            <summary>
+            Gets or sets the Chromosome name of this Sorted BAM Indexer
+            </summary>
+        </member>
+        <member name="P:Bio.IO.BAM.BAMSortedIndex.Current">
+            <summary>
+            Gets the current sorted index.
+            </summary>
+        </member>
+        <member name="P:Bio.IO.BAM.BAMSortedIndex.System#Collections#IEnumerator#Current">
+            <summary>
+            Gets the current sorted index.
+            </summary>
+        </member>
+        <member name="T:Bio.IO.BAM.BAMFormatterExtensions">
+            <summary>
+            Extensions specific to the BAMFormatter class.
+            </summary>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMFormatterExtensions.Format(Bio.IO.BAM.BAMFormatter,Bio.Algorithms.Alignment.ISequenceAlignment,System.String,System.String)">
+            <summary>
+            Write out the given SequenceAlignmentMap to the file
+            </summary>
+            <param name="formatter">BAMFormatter</param>
+            <param name="sam">SequenceAlignmentMap</param>
+            <param name="filename">File to write to</param>
+            <param name="indexFilename">BAM index file</param>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMFormatterExtensions.Format(Bio.IO.BAM.BAMFormatter,Bio.IO.SAM.SequenceAlignmentMap,System.String)">
+            <summary>
+            Write out the given SequenceAlignmentMap to the file
+            </summary>
+            <param name="formatter">BAMFormatter</param>
+            <param name="sam">SequenceAlignmentMap</param>
+            <param name="filename">File to write to</param>
+        </member>
+        <member name="T:Bio.IO.BAM.BAMParserExtensions">
+            <summary>
+            Parser extensions for the BAM parsers.
+            </summary>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMParserExtensions.Parse(Bio.IO.BAM.BAMParser,System.String)">
+            <summary>
+            Returns an iterator over a set of SAMAlignedSequences retrieved from a parsed BAM file.
+            </summary>
+            <param name="parser">Parser</param>
+            <param name="filename">Filename</param>
+            <returns>IEnumerable SAMAlignedSequence object.</returns>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMParserExtensions.ParseRange(Bio.IO.BAM.BAMParser,System.String,System.String)">
+            <summary>
+            Parses specified BAM file using index file.
+            Index file is assumed to be in the same location as that of the specified bam file with the name "filename".bai
+            For example, if the specified bam file name is D:\BAMdata\sample.bam then index file name will be taken as D:\BAMdata\sample.bam.bai
+            If index file is not available then this method throw an exception.
+            </summary>
+            <param name="parser">BAM parser</param>
+            <param name="fileName">BAM file name.</param>
+            <param name="refSeqName">Name of reference sequence.</param>
+            <returns>SequenceAlignmentMap object which contains alignments for specified reference sequence.</returns>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMParserExtensions.GetBAMIndexFileName(System.String)">
+            <summary>
+            Attempts to find the name of an index file for the given BAM file name, throws an error if none is found.
+            </summary>
+            <param name="fileName">The name of the BAM file.</param>
+            <returns>The name of the index file for the given BAM file.</returns>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMParserExtensions.ParseRange(Bio.IO.BAM.BAMParser,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Parses specified BAM file using index file.
+            Index file is assumed to be in the same location as that of the specified bam file with the name "filename".bai
+            For example, if the specified bam file name is D:\BAMdata\sample.bam then index file name will be taken as D:\BAMdata\sample.bam.bai
+            If index file is not available then this method throw an exception.
+            </summary>
+            <param name="parser">BAM parser</param>
+            <param name="fileName">BAM file name.</param>
+            <param name="refSeqName">Name of reference sequence.</param>
+            <param name="start">Start index.</param>
+            <param name="end">End index.</param>
+            <returns>SequenceAlignmentMap object which contains alignments overlaps with the specified start 
+            and end co-ordinate of the specified reference sequence.</returns>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMParserExtensions.ParseRange(Bio.IO.BAM.BAMParser,System.String,System.Int32)">
+            <summary>
+            Parses specified BAM file using index file.
+            Index file is assumed to be in the same location as that of the specified bam file with the name "filename".bai
+            For example, if the specified bam file name is D:\BAMdata\sample.bam then index file name will be taken as D:\BAMdata\sample.bam.bai
+            If index file is not available then this method throw an exception.
+            </summary>
+            <param name="parser">BAM parser</param>
+            <param name="fileName">BAM file name.</param>
+            <param name="refSeqIndex">Index of reference sequence.</param>
+            <returns>SequenceAlignmentMap object which contains alignments for specified reference sequence.</returns>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMParserExtensions.ParseRange(Bio.IO.BAM.BAMParser,System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Parses specified BAM file using index file.
+            Index file is assumed to be in the same location as that of the specified bam file with the name "filename".bai
+            For example, if the specified bam file name is D:\BAMdata\sample.bam then index file name will be taken as D:\BAMdata\sample.bam.bai
+            If index file is not available then this method throw an exception.
+            </summary>
+            <param name="parser">BAM parser</param>
+            <param name="fileName">BAM file name.</param>
+            <param name="refSeqIndex">Index of reference sequence.</param>
+            <param name="start">Start index.</param>
+            <param name="end">End index.</param>
+            <returns>SequenceAlignmentMap object which contains alignments overlaps with the specified start 
+            and end co-ordinate of the specified reference sequence.</returns>
+        </member>
+        <member name="M:Bio.IO.BAM.BAMParserExtensions.ParseRange(Bio.IO.BAM.BAMParser,System.String,Bio.SequenceRange)">
+            <summary>
+            Parses specified BAM file using index file.
+            </summary>
+            <param name="parser">BAM parser</param>
+            <param name="fileName">BAM file name.</param>
+            <param name="range">SequenceRange object which contains reference sequence name and start and end co-ordinates.</param>
+            <returns>SequenceAlignmentMap object which contains alignments for specified reference sequence and for specified range.</returns>
+        </member>
+        <member name="T:Bio.FormatterExtensions">
+            <summary>
+            Generic formatter extensions
+            </summary>
+        </member>
+        <member name="M:Bio.FormatterExtensions.Open``1(Bio.IO.IFormatter{``0},System.String)">
+            <summary>
+            Open a file and parse it with the formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="filename">Filename</param>
+            <returns>IDisposable to close stream.</returns>
+        </member>
+        <member name="M:Bio.FormatterExtensions.Format``1(Bio.IO.IFormatter{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Writes a set of data to the formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="data">Data to write.</param>
+        </member>
+        <member name="M:Bio.FormatterExtensions.Format``1(Bio.IO.IFormatter{``0},``0)">
+            <summary>
+            Writes a single data element to the formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="data">Data</param>
+        </member>
+        <member name="M:Bio.FormatterExtensions.Format``1(Bio.IO.IFormatter{``0},System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Writes a set of data to the formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="data">Data to write.</param>
+            <param name="filename">Filename</param>
+        </member>
+        <member name="M:Bio.FormatterExtensions.Format``1(Bio.IO.IFormatter{``0},``0,System.String)">
+            <summary>
+            Writes a single sequence to the formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="data">Sequence</param>
+            <param name="filename">Filename</param>
+        </member>
+        <member name="M:Bio.FormatterExtensions.Close``1(Bio.IO.IFormatter{``0})">
+            <summary>
+            Closes the formatter.
+            </summary>
+            <param name="formatter">Formatter.</param>
+        </member>
+        <member name="M:Bio.FormatterExtensions.FormatString(Bio.IO.IPhylogeneticTreeFormatter,Bio.Phylogenetics.Tree)">
+            <summary>
+            Formats the Phylogenetic tree to a string.
+            </summary>
+            <param name="formatter">Sequence formatter</param>
+            <param name="tree">Tree data</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bio.FormatterExtensions.FormatString``1(Bio.IO.IFormatter{``0},``0)">
+            <summary>
+            Formats the Wiggle annotation to a string.
+            </summary>
+            <param name="formatter"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:Bio.FormatterExtensions.DoFormat``1(System.Action{System.IO.Stream,``0},``0)">
+            <summary>
+            Performs a format to a memory stream and returns the result as a string.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="formatter"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Bio.IO.INamedStreamCreatorExtensions">
+            <summary>
+            Extensions related to INamedStreamCreator
+            </summary>
+        </member>
+        <member name="M:Bio.IO.INamedStreamCreatorExtensions.ToNamedStreamCreatorFromFileName(System.String,System.String)">
+            <summary>
+            Turn a file name (a string) into a INamedStreamCreator
+            </summary>
+            <param name="fileName">The name of the file to turn into a INamedStreamCreator.</param>
+            <param name="name">(Optional) The name of the INamedStreamCreator. If null, fileName is used.</param>
+            <returns>a INamedStreamCreator</returns>
+        </member>
+        <member name="M:Bio.IO.INamedStreamCreatorExtensions.ToNamedStreamCreator(System.IO.FileInfo,System.String)">
+            <summary>
+            Turn a FileInfo into a INamedStreamCreator
+            </summary>
+            <param name="fileInfo">The FileInfo to turn into a INamedStreamCreator.</param>
+            <param name="name">(Optional) The name of the INamedStreamCreator. If null, the FileInfo's name is used.</param>
+            <returns>a INamedStreamCreator</returns>
+        </member>
+        <member name="M:Bio.IO.INamedStreamCreatorExtensions.ToNamedStreamCreator(System.Reflection.Assembly,System.String,System.String)">
+            <summary>
+            Turn a resource into a INamedStreamCreator
+            </summary>
+            <param name="assembly">The assembly containing the resource</param>
+            <param name="resourceName">The name of the resource</param>
+            <param name="name">(Optional) The name of the INamedStreamCreator. If null, resourceName is used.</param>
+            <returns>a INamedStreamCreator</returns>
+        </member>
+        <member name="M:Bio.IO.INamedStreamCreatorExtensions.ToNamedStreamCreatorFromString(System.String,System.String)">
+            <summary>
+            Turn a string into a INamedStreamCreator. The string will be used as the data for the stream.
+            </summary>
+            <param name="text">The text to turn into a INamedStreamCreator.</param>
+            <param name="name">(Optional) The name of the INamedStreamCreator. If null, string is used for both data and for the name.</param>
+            <returns>a INamedStreamCreator</returns>
+        </member>
+        <member name="M:Bio.IO.INamedStreamCreatorExtensions.ReadEachUncommentedLine(Bio.IO.INamedStreamCreator)">
+            <summary>
+            Enumerates the lines of a INamedStreamCreator without comments.
+            </summary>
+            <param name="namedStreamCreator">The INamedStreamCreator to read from</param>
+            <returns>an enumerator of lines</returns>
+        </member>
+        <member name="M:Bio.IO.INamedStreamCreatorExtensions.ReadEachLine(Bio.IO.INamedStreamCreator)">
+            <summary>
+            Enumerates the lines of a INamedStreamCreator.
+            </summary>
+            <param name="namedStreamCreator">The INamedStreamCreator to read from</param>
+            <returns>an enumerator of lines</returns>
+        </member>
+        <member name="M:Bio.IO.INamedStreamCreatorExtensions.ReadUncommentedLine(Bio.IO.INamedStreamCreator)">
+            <summary>
+            Return the first line of namedStreamCreator after any comments.
+            </summary>
+            <param name="namedStreamCreator">The namedStreamCreator from which to read.</param>
+            <returns>The first line of a file after skipping any comments.</returns>
+        </member>
+        <member name="M:Bio.IO.INamedStreamCreatorExtensions.OpenText(Bio.IO.INamedStreamCreator)">
+            <summary>
+            Open a INamedStreamCreator for reading as text. This should be used is a Using statement. (According to http://msdn.microsoft.com/en-us/library/hh40558e.aspx, the stream will be disposed of, too.)
+            </summary>
+            <param name="namedStreamCreator">The INamedStreamCreator to read from</param>
+            <returns>a StreamReader</returns>
+        </member>
+        <member name="M:Bio.IO.INamedStreamCreatorExtensions.OpenUncommentedText(Bio.IO.INamedStreamCreator)">
+            <summary>
+            Open a INamedStreamCreator for reading as uncommented text. This should be used is a Using statement. (According to http://msdn.microsoft.com/en-us/library/hh40558e.aspx, the stream will be disposed of, too.)
+            </summary>
+            <param name="namedStreamCreator">The INamedStreamCreator to read from</param>
+            <returns>a StreamReader</returns>
+        </member>
+        <member name="M:Bio.IO.INamedStreamCreatorExtensions.ReadToEnd(Bio.IO.INamedStreamCreator)">
+            <summary>
+            Returns all the data of a INamedStreamCreator as a string.
+            </summary>
+            <param name="namedStreamCreator">The INamedStreamCreator to read from</param>
+            <returns>The data as text</returns>
+        </member>
+        <member name="M:Bio.IO.INamedStreamCreatorExtensions.WriteToStream(Bio.IO.INamedStreamCreator,System.IO.Stream)">
+            <summary>
+            Write the context of a INamedStreamCreator to a stream.
+            </summary>
+            <param name="namedStreamCreator">The INamedStreamCreator to read from</param>
+            <param name="stream">The stream to write to</param>
+        </member>
+        <member name="T:Bio.ParserFormatterExtensions`1">
+            <summary>
+            Extensions to the parser/formatter framework to support Open/Close/Dispose semantics.
+            </summary>
+        </member>
+        <member name="F:Bio.ParserFormatterExtensions`1.fileData">
+            <summary>
+            This associates some data to the given parser to hold the filename and filestream.
+            </summary>
+        </member>
+        <member name="M:Bio.ParserFormatterExtensions`1.Open(`0,System.String)">
+            <summary>
+            Opens a sequence file using the parser.
+            </summary>
+            <param name="parser">Parser</param>
+            <param name="filename">File to open</param>
+            <returns>Disposable object to close the stream.</returns>
+        </member>
+        <member name="M:Bio.ParserFormatterExtensions`1.GetOpenStream(`0,System.Boolean)">
+            <summary>
+            Parses the sequences from the open file.
+            </summary>
+            <param name="parser">Sequence Parser</param>
+            <param name="writable">True for a writable stream</param>
+            <returns>Set of parsed sequences.</returns>
+        </member>
+        <member name="M:Bio.ParserFormatterExtensions`1.Close(`0)">
+            <summary>
+            Closes the parser.
+            </summary>
+            <param name="parser">Parser</param>
+        </member>
+        <member name="T:Bio.PhylogeneticTreeFormatterExtensions">
+            <summary>
+            Phylo Tree Formatter extensions.
+            </summary>
+        </member>
+        <member name="M:Bio.PhylogeneticTreeFormatterExtensions.Open(Bio.IO.IPhylogeneticTreeFormatter,System.String)">
+            <summary>
+            Open a file and parse it with the formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="filename">Filename</param>
+            <returns>IDisposable to close stream.</returns>
+        </member>
+        <member name="M:Bio.PhylogeneticTreeFormatterExtensions.Format(Bio.IO.IPhylogeneticTreeFormatter,Bio.Phylogenetics.Tree)">
+            <summary>
+            Writes a single data element to the formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="data">Tree Data</param>
+        </member>
+        <member name="M:Bio.PhylogeneticTreeFormatterExtensions.Format(Bio.IO.IPhylogeneticTreeFormatter,Bio.Phylogenetics.Tree,System.String)">
+            <summary>
+            Writes a single sequence to the formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="data">Tree data</param>
+            <param name="filename">Filename</param>
+        </member>
+        <member name="M:Bio.PhylogeneticTreeFormatterExtensions.Close(Bio.IO.IPhylogeneticTreeFormatter)">
+            <summary>
+            Closes the formatter.
+            </summary>
+            <param name="formatter">Formatter.</param>
+        </member>
+        <member name="T:Bio.PhylogeneticTreeParserExtensions">
+            <summary>
+            Extensions for the Newick parser and variations.
+            </summary>
+        </member>
+        <member name="M:Bio.PhylogeneticTreeParserExtensions.Open(Bio.IO.IPhylogeneticTreeParser,System.String)">
+            <summary>
+            Opens a sequence file using the parser.
+            </summary>
+            <param name="parser">Parser</param>
+            <param name="filename">File to open</param>
+            <returns>Disposable object to close the stream.</returns>
+        </member>
+        <member name="M:Bio.PhylogeneticTreeParserExtensions.Parse(Bio.IO.IPhylogeneticTreeParser)">
+            <summary>
+            Parses the sequences from the open file.
+            </summary>
+            <param name="parser">Sequence Parser</param>
+            <returns>Set of parsed sequences.</returns>
+        </member>
+        <member name="M:Bio.PhylogeneticTreeParserExtensions.Parse(Bio.IO.IPhylogeneticTreeParser,System.String)">
+            <summary>
+            Parses the sequences from the open file.
+            </summary>
+            <param name="parser">Sequence Parser</param>
+            <param name="filename">Filename to open</param>
+            <returns>Set of parsed sequences.</returns>
+        </member>
+        <member name="M:Bio.PhylogeneticTreeParserExtensions.Close(Bio.IO.IPhylogeneticTreeParser)">
+            <summary>
+            Closes the parser.
+            </summary>
+            <param name="parser">Parser</param>
+        </member>
+        <member name="T:Bio.SequenceAlignmentFormatterExtensions">
+            <summary>
+            Extension methods for sequence formatters
+            </summary>
+        </member>
+        <member name="M:Bio.SequenceAlignmentFormatterExtensions.Open(Bio.IO.ISequenceAlignmentFormatter,System.String)">
+            <summary>
+            Open a file and parse it with the sequence formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="filename">Filename</param>
+            <returns>IDisposable to close stream.</returns>
+        </member>
+        <member name="M:Bio.SequenceAlignmentFormatterExtensions.Format(Bio.IO.ISequenceAlignmentFormatter,System.Collections.Generic.IEnumerable{Bio.Algorithms.Alignment.ISequenceAlignment})">
+            <summary>
+            Writes a set of sequences to the formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="sequences">Sequences to write.</param>
+        </member>
+        <member name="M:Bio.SequenceAlignmentFormatterExtensions.Format(Bio.IO.ISequenceAlignmentFormatter,Bio.Algorithms.Alignment.ISequenceAlignment)">
+            <summary>
+            Writes a single sequence to the formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="sequence">Sequence</param>
+        </member>
+        <member name="M:Bio.SequenceAlignmentFormatterExtensions.Format(Bio.IO.ISequenceAlignmentFormatter,System.Collections.Generic.IEnumerable{Bio.Algorithms.Alignment.ISequenceAlignment},System.String)">
+            <summary>
+            Writes a set of sequences to the formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="sequences">Sequences to write.</param>
+            <param name="fileName">Filename to write to</param>
+        </member>
+        <member name="M:Bio.SequenceAlignmentFormatterExtensions.Format(Bio.IO.ISequenceAlignmentFormatter,Bio.Algorithms.Alignment.ISequenceAlignment,System.String)">
+            <summary>
+            Writes a sequence to the formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="sequence">Sequence to write.</param>
+            <param name="fileName">Filename to write to</param>
+        </member>
+        <member name="M:Bio.SequenceAlignmentFormatterExtensions.Close(Bio.IO.ISequenceAlignmentFormatter)">
+            <summary>
+            Closes the formatter.
+            </summary>
+            <param name="formatter">Formatter.</param>
+        </member>
+        <member name="T:Bio.SequenceAlignmentParserExtensions">
+            <summary>
+            Extensions to the ISequenceAlignmentParser to support Open/Close/Dispose semantics.
+            </summary>
+        </member>
+        <member name="M:Bio.SequenceAlignmentParserExtensions.Open(Bio.IO.ISequenceAlignmentParser,System.String)">
+            <summary>
+            Opens a sequence file using the parser.
+            </summary>
+            <param name="parser">Parser</param>
+            <param name="filename">File to open</param>
+            <returns>Disposable object to close the stream.</returns>
+        </member>
+        <member name="M:Bio.SequenceAlignmentParserExtensions.Parse(Bio.IO.ISequenceAlignmentParser)">
+            <summary>
+            Parses the sequences from the open file.
+            </summary>
+            <param name="parser">Sequence Parser</param>
+            <returns>Set of parsed sequences.</returns>
+        </member>
+        <member name="M:Bio.SequenceAlignmentParserExtensions.ParseOne(Bio.IO.ISequenceAlignmentParser)">
+            <summary>
+            Parses the sequences from the open file.
+            </summary>
+            <param name="parser">Sequence Parser</param>
+            <returns>Set of parsed sequences.</returns>
+        </member>
+        <member name="M:Bio.SequenceAlignmentParserExtensions.ParseOne(Bio.IO.ISequenceAlignmentParser,System.String)">
+            <summary>
+            Parses the sequences from the open file.
+            </summary>
+            <param name="parser">Sequence Parser</param>
+            <param name="filename">File to parse</param>
+            <returns>Set of parsed sequences.</returns>
+        </member>
+        <member name="M:Bio.SequenceAlignmentParserExtensions.ParseOne``1(Bio.IO.ISequenceAlignmentParser,System.String)">
+            <summary>
+            Parses the sequences from the open file.
+            </summary>
+            <param name="parser">Sequence Parser</param>
+            <param name="filename">File to parse</param>
+            <returns>Set of parsed sequences.</returns>
+        </member>
+        <member name="M:Bio.SequenceAlignmentParserExtensions.Parse(Bio.IO.ISequenceAlignmentParser,System.String)">
+            <summary>
+            Parses the sequences from the given filename.
+            </summary>
+            <param name="parser">Sequence Parser</param>
+            <param name="fileName">Filename to open/close</param>
+            <returns>Set of parsed sequences.</returns>
+        </member>
+        <member name="M:Bio.SequenceAlignmentParserExtensions.Close(Bio.IO.ISequenceAlignmentParser)">
+            <summary>
+            Closes the parser.
+            </summary>
+            <param name="parser">Parser</param>
+        </member>
+        <member name="T:Bio.ParserExtensions">
+            <summary>
+            Extensions to the IParser(T) to support Open/Close/Dispose semantics.
+            </summary>
+        </member>
+        <member name="M:Bio.ParserExtensions.Open``1(Bio.IO.IParser{``0},System.String)">
+            <summary>
+            Opens a sequence file using the parser.
+            </summary>
+            <param name="parser">Parser</param>
+            <param name="filename">File to open</param>
+            <returns>Disposable object to close the stream.</returns>
+        </member>
+        <member name="M:Bio.ParserExtensions.Parse``1(Bio.IO.IParser{``0})">
+            <summary>
+            Parses the data from the open file.
+            </summary>
+            <param name="parser">Parser</param>
+            <returns>Set of parsed data elements.</returns>
+        </member>
+        <member name="M:Bio.ParserExtensions.ParseOne``1(Bio.IO.IParser{``0})">
+            <summary>
+            Parses the data from the open file.
+            </summary>
+            <param name="parser">Parser</param>
+            <returns>Set of parsed data elements.</returns>
+        </member>
+        <member name="M:Bio.ParserExtensions.Parse``1(Bio.IO.IParser{``0},System.String)">
+            <summary>
+            Parses the sequences from the given filename.
+            </summary>
+            <param name="parser">Parser</param>
+            <param name="fileName">Filename to open/close</param>
+            <returns>Set of parsed data elements.</returns>
+        </member>
+        <member name="M:Bio.ParserExtensions.ParseOne``1(Bio.IO.IParser{``0},System.String)">
+            <summary>
+            Parses the sequences from the given filename.
+            </summary>
+            <param name="parser">Parser</param>
+            <param name="fileName">Filename to open/close</param>
+            <returns>Set of parsed data elements.</returns>
+        </member>
+        <member name="M:Bio.ParserExtensions.Close``1(Bio.IO.IParser{``0})">
+            <summary>
+            Closes the parser.
+            </summary>
+            <param name="parser">Parser</param>
+        </member>
+        <member name="T:Bio.SequenceRangeFormatterExtensions">
+            <summary>
+            Extensions for the SequenceRange Formatters.
+            </summary>
+        </member>
+        <member name="M:Bio.SequenceRangeFormatterExtensions.Format(Bio.IO.ISequenceRangeFormatter,System.Collections.Generic.IList{Bio.ISequenceRange},System.String)">
+            <summary>
+            Formats a given ISequenceRange to the given formatter and filename.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="ranges">ISequenceRange elements</param>
+            <param name="filename">Filename to write to</param>
+        </member>
+        <member name="M:Bio.SequenceRangeFormatterExtensions.Format(Bio.IO.ISequenceRangeFormatter,Bio.SequenceRangeGrouping,System.String)">
+            <summary>
+            Writes out a grouping of ISequenceRange objects to a specified
+            text writer.
+            </summary>
+        </member>
+        <member name="T:Bio.SequenceRangeParserExtensions">
+            <summary>
+            SequenceRange Parser extensions.
+            </summary>
+        </member>
+        <member name="M:Bio.SequenceRangeParserExtensions.ParseRange(Bio.IO.ISequenceRangeParser,System.String)">
+            <summary>
+            Parse a set of ISequenceRange objects from a stream.
+            </summary>
+        </member>
+        <member name="M:Bio.SequenceRangeParserExtensions.ParseRangeGrouping(Bio.IO.ISequenceRangeParser,System.String)">
+            <summary>
+            Parse a set of ISequenceRange objects into a SequenceRange
+            grouping from a stream.
+            </summary>
+        </member>
+        <member name="T:Bio.IO.Wiggle.WiggleFormatterExtensions">
+            <summary>
+            Extension methods for sequence formatters
+            </summary>
+        </member>
+        <member name="M:Bio.IO.Wiggle.WiggleFormatterExtensions.Open(Bio.IO.Wiggle.WiggleFormatter,System.String)">
+            <summary>
+            Open a file and parse it with the sequence formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="filename">Filename</param>
+            <returns>IDisposable to close stream.</returns>
+        </member>
+        <member name="M:Bio.IO.Wiggle.WiggleFormatterExtensions.Format(Bio.IO.Wiggle.WiggleFormatter,System.Collections.Generic.IEnumerable{Bio.IO.Wiggle.WiggleAnnotation})">
+            <summary>
+            Writes a set of sequences to the formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="annotations">Wiggle annotations to write.</param>
+        </member>
+        <member name="M:Bio.IO.Wiggle.WiggleFormatterExtensions.Format(Bio.IO.Wiggle.WiggleFormatter,Bio.IO.Wiggle.WiggleAnnotation)">
+            <summary>
+            Writes a single sequence to the formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="annotation">Wiggle Annotation</param>
+        </member>
+        <member name="M:Bio.IO.Wiggle.WiggleFormatterExtensions.Format(Bio.IO.Wiggle.WiggleFormatter,System.Collections.Generic.IEnumerable{Bio.IO.Wiggle.WiggleAnnotation},System.String)">
+            <summary>
+            Writes a set of sequences to the formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="annotations">Wiggle annotations to write.</param>
+            <param name="filename">Filename to write to</param>
+        </member>
+        <member name="M:Bio.IO.Wiggle.WiggleFormatterExtensions.Format(Bio.IO.Wiggle.WiggleFormatter,Bio.IO.Wiggle.WiggleAnnotation,System.String)">
+            <summary>
+            Writes a single sequence to the formatter.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="annotation">Wiggle Annotation</param>
+            <param name="filename">Filename</param>
+        </member>
+        <member name="M:Bio.IO.Wiggle.WiggleFormatterExtensions.Close(Bio.IO.Wiggle.WiggleFormatter)">
+            <summary>
+            Closes the formatter.
+            </summary>
+            <param name="formatter">Formatter.</param>
+        </member>
+        <member name="T:Bio.IO.Wiggle.WiggleParserExtensions">
+            <summary>
+            Extensions to the WiggleParser to support Open/Close/Dispose semantics.
+            </summary>
+        </member>
+        <member name="M:Bio.IO.Wiggle.WiggleParserExtensions.Open(Bio.IO.Wiggle.WiggleParser,System.String)">
+            <summary>
+            Opens a sequence file using the parser.
+            </summary>
+            <param name="parser">Parser</param>
+            <param name="filename">File to open</param>
+            <returns>Disposable object to close the stream.</returns>
+        </member>
+        <member name="M:Bio.IO.Wiggle.WiggleParserExtensions.Parse(Bio.IO.Wiggle.WiggleParser)">
+            <summary>
+            Parses the sequences from the open file.
+            </summary>
+            <param name="parser">Sequence Parser</param>
+            <returns>Set of parsed sequences.</returns>
+        </member>
+        <member name="M:Bio.IO.Wiggle.WiggleParserExtensions.Parse(Bio.IO.Wiggle.WiggleParser,System.String)">
+            <summary>
+            Parses the sequences from the given filename.
+            </summary>
+            <param name="parser">Sequence Parser</param>
+            <param name="fileName">Filename to open/close</param>
+            <returns>Set of parsed sequences.</returns>
+        </member>
+        <member name="M:Bio.IO.Wiggle.WiggleParserExtensions.ParseOne(Bio.IO.Wiggle.WiggleParser,System.String)">
+            <summary>
+            Parses the sequences from the given filename.
+            </summary>
+            <param name="parser">Sequence Parser</param>
+            <param name="fileName">Filename to open/close</param>
+            <returns>Set of parsed sequences.</returns>
+        </member>
+        <member name="M:Bio.IO.Wiggle.WiggleParserExtensions.Close(Bio.IO.Wiggle.WiggleParser)">
+            <summary>
+            Closes the parser.
+            </summary>
+            <param name="parser">Parser</param>
+        </member>
+        <member name="T:Bio.IO.Xsv.XsvContigFormatterExtensions">
+            <summary>
+            Formatter extensions for the XsvContigFormatter
+            </summary>
+        </member>
+        <member name="M:Bio.IO.Xsv.XsvContigFormatterExtensions.Format(Bio.IO.Xsv.XsvContigFormatter,Bio.Algorithms.Assembly.Contig,System.String)">
+            <summary>
+            Write out a set of contigs to the given file.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="contig">Contig to write</param>
+            <param name="filename">Filename</param>
+        </member>
+        <member name="M:Bio.IO.Xsv.XsvContigFormatterExtensions.Format(Bio.IO.Xsv.XsvContigFormatter,Bio.Algorithms.Assembly.Contig)">
+            <summary>
+            Write out a set of contigs to the given file.
+            </summary>
+            <param name="formatter">Formatter</param>
+            <param name="contig">Contig to write</param>
+        </member>
+        <member name="T:Bio.IO.Xsv.XsvContigParserExtensions">
+            <summary>
+            XsvContigParser extensions
+            </summary>
+        </member>
+        <member name="M:Bio.IO.Xsv.XsvContigParserExtensions.ParseContig(Bio.IO.Xsv.XsvContigParser,System.String)">
+            <summary>
+            Parse out a Contig from the given file.
+            </summary>
+            <param name="parser">Parser</param>
+            <param name="filename">Filename</param>
+            <returns>Contig</returns>
+        </member>
+        <member name="T:Bio.Util.CommentedStreamReader">
+            <summary>
+                A stream reader that can skip over comments in the input.
+            </summary>
+        </member>
+        <member name="F:Bio.Util.CommentedStreamReader.CommentHeader">
+            <summary>
+            The string that tells the parser how comments are marked.
+            </summary>
+        </member>
+        <member name="M:Bio.Util.CommentedStreamReader.#ctor(System.IO.FileInfo)">
+            <summary>
+                Create a CommentedStreamReader from a FileInfo
+            </summary>
+            <param name="fileInfo">The fileinfo to read.</param>
+        </member>
+        <member name="M:Bio.Util.CommentedStreamReader.#ctor(System.String)">
+            <summary>
+                Create a CommentedStreamReader from a file
+            </summary>
+            <param name="filename">The file to read</param>
+        </member>
+        <member name="M:Bio.Util.CommentedStreamReader.#ctor(System.IO.Stream)">
+            <summary>
+                Create a CommentedStreamReader from a stream
+            </summary>
+            <param name="stream">The stream to create a CommentedStreamReader from</param>
+        </member>
+        <member name="M:Bio.Util.CommentedStreamReader.#ctor(System.IO.TextReader)">
+            <summary>
+                Create a CommentedStreamReader from a TextReader. Loads the entire contents of the text reader into memory.
+            </summary>
+            <param name="reader">The TextReader to create a CommentedStreamReader from</param>
+        </member>
+        <member name="M:Bio.Util.CommentedStreamReader.ReadLine">
+            <summary>
+                Returns the next noncomment line
+            </summary>
+            <returns>The next noncomment line</returns>
+        </member>
+        <member name="M:Bio.Util.CommentedStreamReader.ReadCommentLine">
+            <summary>
+                Returns the next comment line
+            </summary>
+            <returns>A comment line</returns>
+        </member>
+        <member name="M:Bio.Util.CommentedStreamReader.ReadCommentOrNonCommentLine(System.Boolean)">
+            <summary>
+                Read the next line
+            </summary>
+            <param name="returnComment">if true, returns the next comment line; otherwise, returns the next noncomment line.</param>
+            <returns>the next line</returns>
+        </member>
+        <member name="M:Bio.Util.CommentedStreamReader.Read">
+            <summary>
+            Reads the next character from the input stream and advances the character position by one character.
+            </summary>
+            <returns>
+            The next character from the input stream represented as an <see cref="T:System.Int32"/> object, or -1 if no more characters are available.
+            </returns>
+            <exception cref="T:System.IO.IOException">An I/O error occurs. </exception><filterpriority>1</filterpriority>
+        </member>
+        <member name="M:Bio.Util.CommentedStreamReader.Read(System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Reads a specified maximum of characters from the current stream into a buffer, beginning at the specified index.
+            </summary>
+            <returns>
+            The number of characters that have been read, or 0 if at the end of the stream and no data was read. The number will be less than or equal to the <paramref name="count"/> parameter, depending on whether the data is available within the stream.
+            </returns>
+            <param name="buffer">When this method returns, contains the specified character array with the values between <paramref name="index"/> and (<paramref name="count"/>) replaced by the characters read from the current source. </param><param name="index">The index of <paramref name="buffer"/> at which to begin writing. </param><param name="count">The maximum number of characters to read. </param><exception cref="T:System.ArgumentException">The buffer length minus <paramref name="index"/> is less than <paramref name="count"/>. </exception><exception cref="T:System.ArgumentNullException"><paramref name="buffer"/> is null. </exception><exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index"/> or <paramref name="count"/> is negative. </exception><exception cref="T:System.IO.IOException">An I/O error occurs, such as the stream is closed. </exception><filterpriority>1</filterpriority>
+        </member>
+        <member name="M:Bio.Util.CommentedStreamReader.Peek">
+            <summary>
+            Returns the next available character but does not consume it.
+            </summary>
+            <returns>
+            An integer representing the next character to be read, or -1 if there are no characters to be read or if the stream does not support seeking.
+            </returns>
+            <exception cref="T:System.IO.IOException">An I/O error occurs. </exception><filterpriority>1</filterpriority>
+        </member>
+        <member name="M:Bio.Util.CommentedStreamReader.ReadBlock(System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Reads a specified maximum number of characters from the current stream and writes the data to a buffer, beginning at the specified index.
+            </summary>
+            <returns>
+            The number of characters that have been read. The number will be less than or equal to <paramref name="count"/>, depending on whether all input characters have been read.
+            </returns>
+            <param name="buffer">When this method returns, contains the specified character array with the values between <paramref name="index"/> and (<paramref name="count"/>) replaced by the characters read from the current source.</param><param name="index">The position in <paramref name="buffer"/> at which to begin writing.</param><param name="count">The maximum number of characters to read.</param><exception cref="T:System.ArgumentNullException"><paramref name="buffer"/> is null. </exception><exception cref="T:System.ArgumentException">The buffer length minus <paramref name="index"/> is less than <paramref name="count"/>. </exception><exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index"/> or <paramref name="count"/> is negative. </exception><exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.StreamReader"/> is closed. </exception><exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+        </member>
+        <member name="M:Bio.Util.CommentedStreamReader.ReadToEnd">
+            <summary>
+            Reads all characters from the current position to the end of the stream.
+            </summary>
+            <returns>
+            The rest of the stream as a string, from the current position to the end. If the current position is at the end of the stream, returns an empty string ("").
+            </returns>
+            <exception cref="T:System.OutOfMemoryException">There is insufficient memory to allocate a buffer for the returned string. </exception><exception cref="T:System.IO.IOException">An I/O error occurs. </exception><filterpriority>1</filterpriority>
+        </member>
+        <member name="M:Bio.Util.CommentedStreamReader.ReadAllComments">
+            <summary>
+                Read all the comments from the stream
+            </summary>
+            <returns>A sequence of comment lines.</returns>
+        </member>
+        <member name="P:Bio.Util.CommentedStreamReader.CommentToken">
+            <summary>
+                The string used to mark a line as a comment line.
+            </summary>
+        </member>
+        <member name="T:Bio.Util.FileAccessComparer">
+            <summary>
+            Compare FileInfo for equal file access capabilities
+            </summary>
+        </member>
+        <member name="M:Bio.Util.FileAccessComparer.Equals(System.IO.FileInfo,System.IO.FileInfo)">
+            <summary>
+            Compare for file equality using name and timestamps
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns> bool true if FileInfo name and LastWriteTimes are equal, otherwise false </returns>
+        </member>
+        <member name="M:Bio.Util.FileAccessComparer.GetHashCode(System.IO.FileInfo)">
+            <summary>
+            Returns HashCode from FileInfo.Name
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Bio.Util.FileUtils">
+            <summary>
+            A static class of methods related to files.
+            </summary>
+        </member>
+        <member name="F:Bio.Util.FileUtils.CommentHeader">
+            <summary>
+            The string that tells the parser how comments are marked.
+            </summary>
+        </member>
+        <member name="M:Bio.Util.FileUtils.OpenTextStripComments(System.String)">
+            <summary>
+            Given a (possibly compressed) file with possible comments, return a StreamReader with uncompressed, uncommented text.
+            </summary>
+            <param name="filename">The file to open</param>
+            <returns>a StreamReader with uncompressed, uncommented text.</returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.OpenTextStripComments(System.IO.FileInfo,System.Boolean)">
+            <summary>
+            Given a (possibly compressed) FileInfo with possible comments, return a StreamReader with uncompressed, uncommented text.
+            </summary>
+            <param name="fileInfo">The FileInfo to open</param>
+            <param name="allowGzip">(Optional) Tells if should uncompress files with names ending in ".gz" or ".gzip".</param>
+            <returns>a StreamReader with uncompressed, uncommented text.</returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.StripComments(System.IO.Stream)">
+            <summary>
+            Filter the comments out of a stream.
+            </summary>
+            <param name="stream">The steam to filter</param>
+            <returns>a StreamReader that skips over comments</returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.ReadLine(System.IO.FileInfo)">
+            <summary>
+            Read the first line of a file after any comments.
+            </summary>
+            <param name="file">The FileInfo from which to read.</param>
+            <returns>The first line of a file after skipping any comments.</returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.ReadLine(Bio.IO.INamedStreamCreator)">
+            <summary>
+            Read the first line of a namedStreamCreator after any comments.
+            </summary>
+            <param name="namedStreamCreator">The namedStreamCreator from which to read.</param>
+            <returns>The first line of a file after skipping any comments.</returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.ReadLine(System.String)">
+            <summary>
+            Read the first line of a file after any comments.
+            </summary>
+            <param name="filename">A name of the file from which to read</param>
+            <returns>The first line of a file after skipping any comments.</returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.ReadEachLine(System.String)">
+            <summary>
+            </summary>
+            <param name="fileName">The name of the file from which to read.</param>
+            <returns>a sequence of lines from a file</returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.ReadEachLine(System.IO.TextReader)">
+            <summary>
+            Returns a sequence of lines from a TextReader.
+            </summary>
+            <param name="textReader">A textReader from which to read lines.</param>
+            <returns>a sequence of lines from a TextReader</returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.ReadEachLine(System.IO.FileInfo)">
+            <summary>
+            Returns a sequence of lines from a file.
+            </summary>
+            <param name="fileInfo">A FileInfo from which to read lines.</param>
+            <returns>a sequence of lines from a file</returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.ReadEachIndexedLine(System.String)">
+            <summary>
+            Returns the lines of a file as a pair with both lines and their index number
+            </summary>
+            <param name="fileName">The name of the file to read.</param>
+            <returns>A sequence of KeyValuePair's. The key is the line and the value is the index number.</returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.ReadEachIndexedLine(System.IO.TextReader)">
+            <summary>
+            Returns the lines of a TextReader as a pair with both lines and their index number
+            </summary>
+            <param name="textReader">The TextReader that is the source of lines.</param>
+            <returns>A sequence of KeyValuePair's. The key is the line and the value is the index number.</returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.ReadEachIndexedLine(System.IO.FileInfo)">
+            <summary>
+            Returns the lines of a file as a pair with both lines and their index number
+            </summary>
+            <param name="file">A FileInfo to read from</param>
+            <returns>A sequence of KeyValuePair's. The key is the line and the value is the index number.</returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.GetTextReaderWithExternalReadWriteAccess(System.String)">
+            <summary>
+            Read a file stripping out comment, but with ReadWrite sharing.
+            </summary>
+            <param name="filename">The file to read</param>
+            <returns>A StreamReader</returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.GetFiles(System.String,System.Boolean)">
+            <summary>
+            Get all the files that fit a pattern. The patterns can contain '*' as a wildcard. Patterns can
+            include directories. Patterns can be combined into larger patterns with '+'
+            </summary>
+            <param name="inputPattern">A file pattern.</param>
+            <param name="zeroIsOK">True if its OK that no actual files match the pattern between '+''s.</param>
+            <returns>The names of actual files that match the pattern.</returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.CreateDirectoryForFileIfNeeded(System.String)">
+            <summary>
+            Create a directory for a file if the file's directory does not already exist.
+            </summary>
+            <param name="fileName">The file to create a directory for.</param>
+        </member>
+        <member name="M:Bio.Util.FileUtils.CreateDirectoryForFileIfNeeded(System.IO.FileInfo)">
+            <summary>
+            Creates a directory for a file if the file's directory does not already exist.
+            </summary>
+            <param name="fileInfo">The file for while the directory will be created.</param>
+        </member>
+        <member name="M:Bio.Util.FileUtils.GetEntryOrCallingAssembly">
+            <summary>
+            Returns the assembly in which program execution began. If no such assembly exists (for example, if this is running in Silverlight), then returns the calling assembly.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.GetDirectoryName(System.String)">
+            <summary>
+            Returns the directory/path name for the specified file
+            </summary>
+            <param name="exampleFileToCopy"> name of source file</param>
+            <returns> string holding the path</returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.GetDirectoryName(System.String,System.String)">
+            <summary>
+            Returns the normalized directory/path name for the combined string workingDirectory + exampleFileToCopy
+            </summary>
+            <param name="exampleFileToCopy"> name of source file</param>
+            <param name="workingDirectory"> name of path to source file</param>
+            <returns> string holding the normalized path</returns>
+        </member>
+        <member name="M:Bio.Util.FileUtils.TryToOpenFile(System.String,System.TimeSpan,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,System.IO.FileStream@)">
+            <summary>
+            Keep trying to open file with a timeout
+            </summary>
+            <param name="filename"></param>
+            <param name="timeout"></param>
+            <param name="fileMode"></param>
+            <param name="fileAcces"></param>
+            <param name="fileShare"></param>
+            <param name="filestream"></param>
+            <returns>bool true if successfully opened, otherwise false</returns>
+        </member>
+    </members>
+</doc>

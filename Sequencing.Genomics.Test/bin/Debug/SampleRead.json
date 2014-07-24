@@ -1,0 +1,337 @@
+﻿[{
+  "alignedBases": "TAACCCTAACCCT-ACCCTAACCCTAACCCTAACCCTAACCCTA",
+  "baseQuality": "0<>=/0E:7;08FBDIF9;2%=<>+FCDDA6GE%1H;81DC?##########################################################",
+  "cigar": "13M1D30M57S",
+  "flags": 163,
+  "id": "ChdDSkRta1luOENoQ2NuYzdpNEthV3FtURIBMRiQTigA",
+  "mappingQuality": 15,
+  "matePosition": 10069,
+  "mateReferenceSequenceName": "1",
+  "name": "SRR062634.9882510",
+  "originalBases": "TAACCCTAACCCTACCCTAACCCTAACCCTAACCCTAACCCTATCCCCACCCTAACCCCAACCCTAACCCTCAACCCACACCCATAACCCTACACCTACA",
+  "position": 10001,
+  "readsetId": "CJDmkYn8ChCcnc7i4KaWqmQ",
+  "referenceSequenceName": "1",
+  "tags": {
+    "AM": [
+      "15"
+    ],
+    "BQ": [
+      "@@@@@@@@@@@@@a@A@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+    ],
+    "MD": [
+      "13^A30"
+    ],
+    "MQ": [
+      "15"
+    ],
+    "NM": [
+      "1"
+    ],
+    "RG": [
+      "SRR062634"
+    ],
+    "SM": [
+      "15"
+    ],
+    "XC": [
+      "43"
+    ],
+    "XT": [
+      "M"
+    ]
+  },
+  "templateLength": 166,
+  "ETag": null
+},
+{
+  "alignedBases": "TAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCT",
+  "baseQuality": "0=MLOOPNNPPJHPOQQROQPQQRIQPRJBPQPKQ?PLPR@?PQ>IIF2G?<>>;E?<EE########################################",
+  "cigar": "11S36M1I13M39S",
+  "flags": 163,
+  "id": "ChdDSkRta1luOENoQ2NuYzdpNEthV3FtURIBMRiQTigB",
+  "mappingQuality": 9,
+  "matePosition": 10051,
+  "mateReferenceSequenceName": "1",
+  "name": "SRR062641.21956756",
+  "originalBases": "TAACCCTACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTTAACCCTAACCCTAACCCTAACCCTAACCCTCACCCTAACCCCAAACCCCCA",
+  "position": 10001,
+  "readsetId": "CJDmkYn8ChCcnc7i4KaWqmQ",
+  "referenceSequenceName": "1",
+  "tags": {
+    "AM": [
+      "9"
+    ],
+    "BQ": [
+      "@@@@@@@@@@@K@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@A@QPE@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+    ],
+    "MD": [
+      "49"
+    ],
+    "MQ": [
+      "9"
+    ],
+    "NM": [
+      "1"
+    ],
+    "RG": [
+      "SRR062641"
+    ],
+    "SM": [
+      "9"
+    ],
+    "XA": [
+      "20,-62918478,100M,2;1,+10103,100M,2;hs37d5,+10061471,100M,3;1,-249240249,100M,3;"
+    ],
+    "XC": [
+      "61"
+    ],
+    "XT": [
+      "M"
+    ]
+  },
+  "templateLength": 120,
+  "ETag": null
+},
+{
+  "alignedBases": "AACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCC",
+  "baseQuality": "0KKNPQOQOQIQRPQPRRRRPQPRRRRPRFKRFPMPDLMFRGHRIFMDEFEAI<>>A@@=FGEDIB8?ECEE7<<#########################",
+  "cigar": "8M1I6M1I6M1I42M1I9M25S",
+  "flags": 99,
+  "id": "ChdDSkRta1luOENoQ2NuYzdpNEthV3FtURIBMRiRTigA",
+  "mappingQuality": 0,
+  "matePosition": 10110,
+  "mateReferenceSequenceName": "1",
+  "name": "SRR062641.13613107",
+  "originalBases": "AACCCTAACCCCTAACCCCTAACCCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCCTAACCCCAACCCTAACCCTAACCCCAACCCT",
+  "position": 10002,
+  "readsetId": "CJDmkYn8ChCcnc7i4KaWqmQ",
+  "referenceSequenceName": "1",
+  "tags": {
+    "AM": [
+      "0"
+    ],
+    "BQ": [
+      "@F@@@@@@@pej@@@@qnk@@@@qnk@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@W[^@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+    ],
+    "MD": [
+      "71"
+    ],
+    "MQ": [
+      "0"
+    ],
+    "NM": [
+      "4"
+    ],
+    "RG": [
+      "SRR062641"
+    ],
+    "SM": [
+      "0"
+    ],
+    "XA": [
+      "X,-155260353,7M1I68M,3;GL000227.1,+73956,8M1I67M,3;9,+10166,45M1I30M,3;"
+    ],
+    "XC": [
+      "76"
+    ],
+    "XT": [
+      "M"
+    ]
+  },
+  "templateLength": 162,
+  "ETag": null
+},
+{
+  "alignedBases": "AACCCTAACCCTAACCCTAACCCGAACCCGAACCCTAACCCGAACCCGAACCCGAA",
+  "baseQuality": "0KKNPQOQOQQROQPQRRPQPRR=QRPRR7QLJRGSFRKRL>BRPFL;G:HED6H?:??9DEA.F###################################",
+  "cigar": "56M44S",
+  "flags": 99,
+  "id": "ChdDSkRta1luOENoQ2NuYzdpNEthV3FtURIBMRiRTigB",
+  "mappingQuality": 1,
+  "matePosition": 10058,
+  "mateReferenceSequenceName": "1",
+  "name": "SRR062641.13792993",
+  "originalBases": "AACCCTAACCCTAACCCTAACCCGAACCCGAACCCTAACCCGAACCCGAACCCGAACCCGAACCCTAACCCGAACCCGAACCCTAACCCCAACCCCAAAC",
+  "position": 10002,
+  "readsetId": "CJDmkYn8ChCcnc7i4KaWqmQ",
+  "referenceSequenceName": "1",
+  "tags": {
+    "AM": [
+      "1"
+    ],
+    "BQ": [
+      "@F@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+    ],
+    "MD": [
+      "23T5T11T5T5T2"
+    ],
+    "MQ": [
+      "1"
+    ],
+    "NM": [
+      "5"
+    ],
+    "RG": [
+      "SRR062641"
+    ],
+    "SM": [
+      "1"
+    ],
+    "XC": [
+      "66"
+    ],
+    "XT": [
+      "M"
+    ]
+  },
+  "templateLength": 113,
+  "ETag": null
+},
+{
+  "alignedBases": "ACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCT",
+  "baseQuality": "0LKLPPQOPOQQRLQPQRRPQPRRRPQPQRRPQPQRRPQPRRGPQ;HI@?B&>?##############################################",
+  "cigar": "2S53M45S",
+  "flags": 99,
+  "id": "ChdDSkRta1luOENoQ2NuYzdpNEthV3FtURIBMRiSTigA",
+  "mappingQuality": 15,
+  "matePosition": 10188,
+  "mateReferenceSequenceName": "1",
+  "name": "SRR062634.14718531",
+  "originalBases": "CTACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTCAACCCTAAACCTAACCCTAACCCCAACCCTACCCCCAA",
+  "position": 10003,
+  "readsetId": "CJDmkYn8ChCcnc7i4KaWqmQ",
+  "referenceSequenceName": "1",
+  "tags": {
+    "AM": [
+      "15"
+    ],
+    "BQ": [
+      "@@gHKKLJKJLLMGLKLMMKLKMMMKLKLMMKLKLMMKLKMMBKL@CD@@D@IK@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+    ],
+    "MD": [
+      "53"
+    ],
+    "MQ": [
+      "15"
+    ],
+    "NM": [
+      "0"
+    ],
+    "RG": [
+      "SRR062634"
+    ],
+    "SM": [
+      "15"
+    ],
+    "XA": [
+      "4,-191044113,100M,0;4,+10113,100M,1;hs37d5,+6743445,100M,1;1,+10174,100M,1;15,-102521242,100M,1;1,-249239898,100M,1;19,-59118930,100M,1;21,-48119815,100M,1;4,-191043889,100M,1;"
+    ],
+    "XC": [
+      "55"
+    ],
+    "XT": [
+      "M"
+    ]
+  },
+  "templateLength": 250,
+  "ETag": null
+},
+{
+  "alignedBases": "CCTTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCC",
+  "baseQuality": "0FGIHDIHIIJHEIFIAHKIJJKIKIJJLIK0?KBBG3?D=1,=;E::==14*;=??2>#########################################",
+  "cigar": "1S39M1I9M1I9M40S",
+  "flags": 163,
+  "id": "ChdDSkRta1luOENoQ2NuYzdpNEthV3FtURIBMRiTTigA",
+  "mappingQuality": 10,
+  "matePosition": 10099,
+  "mateReferenceSequenceName": "1",
+  "name": "SRR062634.10759422",
+  "originalBases": "CCCTTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTTAACCCTAACCCCTAACCCTAACCCTCAAACCCCCTAACCCCCTAACCCTAACCCCAAC",
+  "position": 10004,
+  "readsetId": "CJDmkYn8ChCcnc7i4KaWqmQ",
+  "referenceSequenceName": "1",
+  "tags": {
+    "AM": [
+      "10"
+    ],
+    "BQ": [
+      "@efhdAFDEEFDAEBE@DGEFFGEGEFFHEG@@G@@C@@F@P@E@A@@BD@SFT@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+    ],
+    "MD": [
+      "2C54"
+    ],
+    "MQ": [
+      "10"
+    ],
+    "NM": [
+      "3"
+    ],
+    "RG": [
+      "SRR062634"
+    ],
+    "SM": [
+      "10"
+    ],
+    "XA": [
+      "1,-249240112,100M,3;"
+    ],
+    "XC": [
+      "60"
+    ],
+    "XT": [
+      "M"
+    ]
+  },
+  "templateLength": 166,
+  "ETag": null
+},
+{
+  "alignedBases": "CCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCC",
+  "baseQuality": "0GHIGIJHIIJCJEJGFEAEJ0LIKIJKL;G3G?=?B=??HDHC1@5@'D##################################################",
+  "cigar": "4M1I41M54S",
+  "flags": 163,
+  "id": "ChdDSkRta1luOENoQ2NuYzdpNEthV3FtURIBMRiTTigB",
+  "mappingQuality": 10,
+  "matePosition": 10116,
+  "mateReferenceSequenceName": "1",
+  "name": "SRR062635.17851444",
+  "originalBases": "CCCTAAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCCTCATCCTAACCCTAACCCTATCCTAACCCTAACCCTAACCCCAAACCTAACCC",
+  "position": 10004,
+  "readsetId": "CJDmkYn8ChCcnc7i4KaWqmQ",
+  "referenceSequenceName": "1",
+  "tags": {
+    "AM": [
+      "10"
+    ],
+    "BQ": [
+      "@EC@@fd@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\\M_@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+    ],
+    "MD": [
+      "45"
+    ],
+    "MQ": [
+      "10"
+    ],
+    "NM": [
+      "1"
+    ],
+    "RG": [
+      "SRR062635"
+    ],
+    "SM": [
+      "10"
+    ],
+    "XA": [
+      "GL000227.1,+73873,100M,3;"
+    ],
+    "XC": [
+      "51"
+    ],
+    "XT": [
+      "M"
+    ]
+  },
+  "templateLength": 194,
+  "ETag": null
+}]

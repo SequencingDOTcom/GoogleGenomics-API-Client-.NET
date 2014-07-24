@@ -1,0 +1,1037 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Bio.WebServices</name>
+    </assembly>
+    <members>
+        <member name="T:Bio.Web.Blast.BlastProgram">
+            <summary>
+            Constants for the known BLAST program styles
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Blast.BlastProgram.Blastn">
+            <summary>
+            BLASTN program
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Blast.BlastProgram.Blastp">
+            <summary>
+            BLASTP program
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Blast.BlastProgram.Blastx">
+            <summary>
+            BLASTX program
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Blast.BlastProgram.Tblastn">
+            <summary>
+            TBLASTN program
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Blast.BlastProgram.Tblastx">
+            <summary>
+            TBLASTX program
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Blast.BlastProgram.Megablast">
+            <summary>
+            NCBI MegaBlast (BLASTN+)
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Blast.BlastRequestParameters">
+            <summary>
+            BLAST request parameters
+            </summary>
+        </member>
+        <member name="M:Bio.Web.Blast.BlastRequestParameters.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Constructor (default)
+            </summary>
+        </member>
+        <member name="M:Bio.Web.Blast.BlastRequestParameters.#ctor(System.Collections.Generic.IEnumerable{Bio.ISequence},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Constructor which takes a set of sequences to initialize.
+            </summary>
+            <param name="sequences">Sequences.</param>
+            <param name = "extraParameters">Extra parameters</param>
+        </member>
+        <member name="M:Bio.Web.Blast.BlastRequestParameters.Initialize(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Initialize with defaults
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastRequestParameters.Database">
+            <summary>
+            Database to query
+            </summary>
+            <value>The database.</value>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastRequestParameters.Program">
+            <summary>
+            Program to use.
+            </summary>
+            <value>The program.</value>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastRequestParameters.ExtraParameters">
+            <summary>
+            Additional parameters passed to the service.
+            </summary>
+            <value>The extra parameters.</value>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastRequestParameters.Sequences">
+            <summary>
+            Set of sequences to search for
+            </summary>
+            <value>The sequences.</value>
+        </member>
+        <member name="T:Bio.Web.Blast.BlastResult">
+            <summary>
+            A single BLAST search result. This is represented by a single XML
+            document in BLAST XML format. It consist of some introductory information
+            such as BLAST version, a structure listing the search parameters, and
+            a list of Iterations (represented in the BlastSearchRecord class).
+            </summary>
+        </member>
+        <member name="M:Bio.Web.Blast.BlastResult.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastResult.Metadata">
+            <summary>
+            The summary data for the search
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastResult.Records">
+            <summary>
+            The list of BlastSearchRecords in the document.
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Blast.BlastSearchRecord">
+            <summary>
+            A single result from a sequence search, such as any of the various flavors of BLAST.
+            This is referred to as an Iteration in the BLAST XML schema; some flavors (such as
+            PSI-BLAST) can combine multiple iterations into one XML document.
+            </summary>
+        </member>
+        <member name="M:Bio.Web.Blast.BlastSearchRecord.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastSearchRecord.Hits">
+            <summary>
+            The set of hits associated with this iteration
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastSearchRecord.IterationNumber">
+            <summary>
+            The index for this iteration
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastSearchRecord.IterationQueryId">
+            <summary>
+            The ID of the query which generated this iteration
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastSearchRecord.IterationQueryDefinition">
+            <summary>
+            The definition of the query which generated this iteration
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastSearchRecord.IterationQueryLength">
+            <summary>
+            The length of the query which generated this iteration
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastSearchRecord.IterationMessage">
+            <summary>
+            A human-readable message associated with this iteration
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastSearchRecord.Statistics">
+            <summary>
+            The statistics returned for this iteration
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Blast.BlastStatistics">
+            <summary>
+            Container for the Statistics segment of the XML BLAST format.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastStatistics.SequenceCount">
+            <summary>
+            The number of sequences in the iteration
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastStatistics.DatabaseLength">
+            <summary>
+            Database size, for correction
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastStatistics.HspLength">
+            <summary>
+            Effective HSP length
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastStatistics.EffectiveSearchSpace">
+            <summary>
+            Effective search space
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastStatistics.Kappa">
+            <summary>
+            Karlin-Altschul parameter K
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastStatistics.Lambda">
+            <summary>
+            Karlin-Altschul parameter Lambda
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastStatistics.Entropy">
+            <summary>
+            Karlin-Altschul parameter H
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Blast.BlastXmlMetadata">
+            <summary>
+            Container for the Output segment of the XML BLAST format. This
+            contains metadata for the search.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.Program">
+            <summary>
+            The name of the program invoked (blastp, etc.)
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.Version">
+            <summary>
+            The BLAST version
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.Reference">
+            <summary>
+            Literature reference for BLAST (always the same)
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.Database">
+            <summary>
+            The database(s) searched
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.QueryId">
+            <summary>
+            The query identifier defined by the service
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.QueryDefinition">
+            <summary>
+            The query definition line (if any)
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.QueryLength">
+            <summary>
+            The length of the query sequence
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.QuerySequence">
+            <summary>
+            The query sequence (optional, may not be returned)
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.ParameterMatrix">
+            <summary>
+            The name of the similarity matrix used
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.ParameterExpect">
+            <summary>
+            The Expect value used for the search
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.ParameterInclude">
+            <summary>
+            The inclusion threshold for a PSI-Blast iteration
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.ParameterMatchScore">
+            <summary>
+            The match score for nucleotide-nucleotide comparisons
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.ParameterMismatchScore">
+            <summary>
+            The mismatch score for nucleotide-nucleotide comparisons
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.ParameterGapOpen">
+            <summary>
+            The gap open penalty
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.ParameterGapExtend">
+            <summary>
+            The Gap extension penalty.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.ParameterFilter">
+            <summary>
+            The filtering options used for the search
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.ParameterPattern">
+            <summary>
+            The pattern used for PHI-Blast
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlMetadata.ParameterEntrezQuery">
+            <summary>
+            The ENTREZ query used to limit the search
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Blast.BlastXmlParser">
+            <summary>
+            Parse text containing XML BLAST results into a list
+            of SequenceSearchRecord objects.
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Blast.IBlastParser">
+            <summary>
+            This interface defines the contract that has to be implemented by a class
+            that parse an output from blast service.
+            Blast service can be in different format e.g., text / xml
+            </summary>
+        </member>
+        <member name="M:Bio.Web.Blast.BlastXmlParser.ParseXML(System.Text.StringBuilder)">
+            <summary>
+            This method expects a single XML document and returns one BlastResult.
+            </summary>
+            <param name="doc">A Stringbuilder containing the XML document.</param>
+            <returns>The BlastResult.</returns>
+        </member>
+        <member name="M:Bio.Web.Blast.BlastXmlParser.Parse(System.IO.Stream)">
+            <summary>
+            Read XML BLAST data from the reader, and build one or more
+            BlastRecordGroup objects (each containing one or more
+            BlastSearchRecord results).
+            </summary>
+            <param name="stream">The stream to pull the data from</param>
+            <returns>A list of BLAST iteration objects</returns>
+        </member>
+        <member name="M:Bio.Web.Blast.BlastXmlParser.ParseOne(System.IO.Stream)">
+            <summary>
+            Parse a single entity from the given stream.
+            </summary>
+            <param name="stream">The stream to pull data from</param>
+            <returns>Parse entity object</returns>
+        </member>
+        <member name="M:Bio.Web.Blast.BlastXmlParser.ReadNextLine(System.IO.TextReader,System.Boolean)">
+            <summary>
+            Reads next line considering
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlParser.Name">
+            <summary>
+            Gets the name of the parser being implemented. 
+            This is intended to give the developer name of the parser.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlParser.Description">
+            <summary>
+            Gets the description of the parser being
+            implemented. This is intended to give the
+            developer some information of the parser.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.BlastXmlParser.SupportedFileTypes">
+            <summary>
+            Gets the file extensions that the parser supports.
+            If multiple extensions are supported then this property 
+            will return a string containing all extensions with a ',' delimited.
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Blast.Hit">
+            <summary>
+            A database sequence with high similarity to the query sequence.
+            </summary>
+        </member>
+        <member name="M:Bio.Web.Blast.Hit.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hit.Id">
+            <summary>
+            The string identifying the hit sequence
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hit.Def">
+            <summary>
+            The "defline" or definition line for the hit
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hit.Accession">
+            <summary>
+            The accession number of the hit, as string
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hit.Length">
+            <summary>
+            The length of the hit sequence
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hit.Hsps">
+            <summary>
+            The list of HSPs returned for this Hit.
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Blast.Hsp">
+            <summary>
+            a High-scoring Segment Pair.
+            </summary>
+            <remarks>
+            Represents an aligned section of the query and hit sequences with high similarity.
+            </remarks>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.Score">
+            <summary>
+            The score for the pair
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.BitScore">
+            <summary>
+            Normalized form of the score
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.EValue">
+            <summary>
+            Expectation value
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.QueryStart">
+            <summary>
+            The start location of the match in the query sequence
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.QueryEnd">
+            <summary>
+            The end location of the match in the query sequence
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.HitStart">
+            <summary>
+            The start location of the match in the hit sequence
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.HitEnd">
+            <summary>
+            The end location of the match in the hit sequence
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.QueryFrame">
+            <summary>
+            The frame for the query sequence
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.HitFrame">
+            <summary>
+            The frame for the hit sequence
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.IdentitiesCount">
+            <summary>
+            Number of residues that matched exactly
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.PositivesCount">
+            <summary>
+            Number of residues that matched conservatively (for proteins)
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.AlignmentLength">
+            <summary>
+            The length of the local match
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.Density">
+            <summary>
+            The score density
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.QuerySequence">
+            <summary>
+            The local match in the query sequence, as a string
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.HitSequence">
+            <summary>
+            The local match in the hit sequence, as a string
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.Midline">
+            <summary>
+            Gets or sets the formating middle line
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.PatternFrom">
+            <summary>
+            Gets or sets start of PHI-BLAST pattern
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.PatternTo">
+            <summary>
+            Gets or sets end of PHI-BLAST pattern
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.Hsp.Gaps">
+            <summary>
+            Gets are sets number of gaps in HSP
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Blast.IBlastWebHandler">
+            <summary>
+            BLAST web service handler.
+            </summary>
+        </member>
+        <member name="M:Bio.Web.Blast.IBlastWebHandler.ExecuteAsync(Bio.Web.Blast.BlastRequestParameters,System.Threading.CancellationToken)">
+            <summary>
+            Executes the BLAST search request.
+            </summary>
+            <param name="bp">Parameters</param>
+            <param name="token">Cancellation token</param>
+            <returns>XML data as a string</returns>
+        </member>
+        <member name="P:Bio.Web.Blast.IBlastWebHandler.EndPoint">
+            <summary>
+            Endpoint for the BLAST service - should be initialized to
+            normal value, but can be replaced to hit custom services.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.IBlastWebHandler.TimeoutInSeconds">
+            <summary>
+            Timeout to wait in seconds for response.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.IBlastWebHandler.LogOutput">
+            <summary>
+            Delegate which can receive output as the BLAST request is processed.
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Blast.NcbiBlastWebHandler">
+            <summary>
+            NCBI BLAST web service handler. Utilizes the REST-based web service
+            exposed by http://www.ncbi.nlm.nih.gov/blast. 
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Blast.NcbiBlastWebHandler.DefaultEndPoint">
+            <summary>
+            Default endpoint
+            </summary>
+        </member>
+        <member name="M:Bio.Web.Blast.NcbiBlastWebHandler.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Bio.Web.Blast.NcbiBlastWebHandler.ExecuteAsync(Bio.Web.Blast.BlastRequestParameters,System.Threading.CancellationToken)">
+            <summary>
+            Executes the BLAST search request.
+            </summary>
+            <param name="bp">Parameters</param>
+            <param name="token">Cancellation token</param>
+            <returns>XML data as a string</returns>
+        </member>
+        <member name="M:Bio.Web.Blast.NcbiBlastWebHandler.BuildRequest(Bio.Web.Blast.BlastRequestParameters)">
+            <summary>
+            Build the HTTP content for the request based on the parameters
+            </summary>
+            <returns>The request.</returns>
+        </member>
+        <member name="M:Bio.Web.Blast.NcbiBlastWebHandler.CreateKVP(System.String,System.String)">
+            <summary>
+            Creates a KeyValuePair for the request.
+            </summary>
+            <returns>The KV.</returns>
+            <param name="key">Key.</param>
+            <param name="value">Value.</param>
+        </member>
+        <member name="M:Bio.Web.Blast.NcbiBlastWebHandler.Log(System.String,System.Object[])">
+            <summary>
+            Output to the diagnostic log.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="P:Bio.Web.Blast.NcbiBlastWebHandler.EndPoint">
+            <summary>
+            Endpoint for the BLAST service - should be initialized to
+            normal value, but can be replaced to hit custom services.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.NcbiBlastWebHandler.TimeoutInSeconds">
+            <summary>
+            Timeout to wait in seconds for response.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Blast.NcbiBlastWebHandler.LogOutput">
+            <summary>
+            Delegate which can receive output as the BLAST request is processed.
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Properties.Resources.BlastNoRecords">
+            <summary>
+              Looks up a localized string similar to No records in found in BLAST response..
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Properties.Resources.BlastXmlParserDescription">
+            <summary>
+              Looks up a localized string similar to Parser to read the NCBI XMLBLAST response records..
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Properties.Resources.BlastXmlParserName">
+            <summary>
+              Looks up a localized string similar to BLAST XML Parser.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Properties.Resources.UnknownElement">
+            <summary>
+              Looks up a localized string similar to {0}:Unknown XML element {1} found in BLAST response..
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Selectome.SelectomeTaxaGroup">
+            <summary>
+            An enumeration of the taxonomic groups checked by Selectome
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.SelectomeTaxaGroup.NotSet">
+            <summary>
+            Not yet set.
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.SelectomeTaxaGroup.Euteleostomi">
+            <summary>
+            Most Vetebrates
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.SelectomeTaxaGroup.Primates">
+            <summary>
+            Primates
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.SelectomeTaxaGroup.Glires">
+            <summary>
+            Rodents and lagomorphs
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Selectome.SelectomeConstantsAndEnums">
+            <summary>
+            Constants and enumerations used when interacting with Selectome.
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.SelectomeConstantsAndEnums.VertebratesGroupName">
+            <summary>
+            Group name of all vertebrates used by selectome
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.SelectomeConstantsAndEnums.PrimatesGroupName">
+            <summary>
+            Ensembl name for primates
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.SelectomeConstantsAndEnums.RabbitGroupName">
+            <summary>
+            Rodents and lagomorphs group
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.SelectomeConstantsAndEnums.BaseSelectomeWebsite">
+            <summary>
+            The selectome website
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.SelectomeConstantsAndEnums.GroupToNameList">
+            <summary>
+            Maps group enumerations to their string representation
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.SelectomeConstantsAndEnums.GroupToNameMapping">
+            <summary>
+            A dictionary which maps taxonomic groups to friendly names.
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Selectome.SelectomeDataFetcher">
+            <summary>
+            Data fetch for a selectome
+            </summary>
+        </member>
+        <member name="M:Bio.Web.Selectome.SelectomeDataFetcher.FetchGeneByEnsemblID(System.String)">
+            <summary>
+            Fetches the data for a given ENSEMBL identifier (protein, gene or transcript)
+            </summary>
+            <param name="ensemblID">An ensembl gene id used to query</param>
+            <returns>A SelectomeGene if query is a success, otherwise NULL.</returns>
+        </member>
+        <member name="M:Bio.Web.Selectome.SelectomeDataFetcher.ParseXML(System.String)">
+            <summary>
+            This method expects a single XML document and returns one BlastResult.
+            </summary>
+            <returns>The BlastResult.</returns>
+        </member>
+        <member name="M:Bio.Web.Selectome.SelectomeDataFetcher.ReplaceHtmlText(System.String)">
+            <summary>
+            The return format is variable, so this converts the HTML tags appropriately
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bio.Web.Selectome.SelectomeDataFetcher.ProcessSelectomeData(System.String)">
+            <summary>
+            Parses one line from the note section of the XML into a SelectomeResultObject
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Bio.Web.Selectome.SelectomeGene">
+            <summary>
+            A class that represents the data available for a given gene in the selectome database
+            http://selectome.unil.ch/
+            The data is provided as a DAS server, http://www.biodas.org/wiki/Main_Page, and this class obtains this data from the xml.
+            
+            Currently only provides data from the vertebrate branch, as this uses the most information..
+            </summary>
+        </member>
+        <member name="M:Bio.Web.Selectome.SelectomeGene.GetMaskedBlosum90AlignmentScore">
+            <summary>
+            Get the Blosum90 multiple sequence alignment score for the masked alignment (Gap Open =-5, Gap Extend = -2)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bio.Web.Selectome.SelectomeGene.GetUnmaskedBlosum90AlignmentScore">
+            <summary>
+            Get the Blosum90 alignment score.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeGene.SelectionSignature">
+            <summary>
+            Does this gene show evidence of selection as determined by Selectome?
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeGene.Label">
+            <summary>
+            Label for this gene
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeGene.VertebrateTree">
+            <summary>
+            The vertebrate tree returned
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeGene.VertebrateTreeAsStandardTree">
+            <summary>
+            The vertebrate tree returned
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeGene.MaskedAminoAcidAlignment">
+            <summary>
+            The masked amino acid alignment, masked by selectome procedures
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeGene.UnmaskedAminoAcidAlignment">
+            <summary>
+            The unmasked alignment.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeGene.UnmaskedDNAAlignment">
+            <summary>
+            DNA alignment
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeGene.MaskedDNAAlignment">
+            <summary>
+            Masked DNA alignment
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Selectome.QueryResult">
+            <summary>
+            An enumeration of results returned by selectome
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.QueryResult.Success">
+            <summary>
+            Successfully returned data for the vertebrate tree.
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.QueryResult.NoResultsFound">
+            <summary>
+            Nothing returned
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.QueryResult.NoVeterbrateTreeDataFound">
+            <summary>
+            Data was returned, but not for the verterbrate/eulestomi tree
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Selectome.SelectomeQueryResult">
+            <summary>
+            A class to be returned from a query, indicates success or failure, and the gene if success
+            </summary>
+        </member>
+        <member name="M:Bio.Web.Selectome.SelectomeQueryResult.#ctor(Bio.Web.Selectome.QueryResult,Bio.Web.Selectome.SelectomeGene)">
+            <summary>
+            Create a new Query Result from Selectome
+            </summary>
+            <param name="status"></param>
+            <param name="gene"></param>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeQueryResult.Result">
+            <summary>
+            An enum describing the result
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeQueryResult.Gene">
+            <summary>
+            A Gene present when the result is successful;
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Selectome.SelectomeQuerySubResult">
+            <summary>
+            A parsed result from the selectome database.
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.SelectomeQuerySubResult.SelectionInferred">
+            <summary>
+            Was selection inferred?
+            </summary>
+        </member>
+        <member name="M:Bio.Web.Selectome.SelectomeQuerySubResult.#ctor(Bio.Web.Selectome.SelectomeTaxaGroup,System.Boolean)">
+            <summary>
+            Create a new result.
+            </summary>
+            <param name="group"></param>
+            <param name="selectionInferred"></param>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeQuerySubResult.Group">
+            <summary>
+            What tree/taxonomic group is this result from?
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeQuerySubResult.RelatedLink">
+            <summary>
+            The link related to this result
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Selectome.SelectomeQueryLink">
+            <summary>
+            The data representing the link used to
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.SelectomeQueryLink.Group">
+            <summary>
+            The group
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.SelectomeQueryLink.SubTree">
+            <summary>
+            The genes sub-tree (see ENSEMBL, this typically is relevant for multi-gene families thathave subtrees for each type.)
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.SelectomeQueryLink.Tree">
+            <summary>
+            The tree
+            </summary>
+        </member>
+        <member name="M:Bio.Web.Selectome.SelectomeQueryLink.#ctor(Bio.Web.Selectome.SelectomeTaxaGroup,System.String,System.String)">
+            <summary>
+            Create a new link result
+            </summary>
+            <param name="group"></param>
+            <param name="tree"></param>
+            <param name="subtree"></param>
+        </member>
+        <member name="T:Bio.Web.Selectome.SelectomeTree">
+            <summary>
+            A phylogenetic tree with some additional fields made available by the selectome data
+            </summary>
+        </member>
+        <member name="M:Bio.Web.Selectome.SelectomeTree.#ctor(Bio.Phylogenetics.Tree)">
+            <summary>
+            Initializes a new selectome tree from a tree parsed by the Newick parser
+            </summary>
+            <param name="initialTree"></param>
+        </member>
+        <member name="M:Bio.Web.Selectome.SelectomeTree.GetFeatureFromLeaves``1(System.Func{Bio.Web.Selectome.SelectomeTreeNode,``0})">
+            <summary>
+            Apply the selection function to each element of the tree
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="function"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bio.Web.Selectome.SelectomeTree.AllLeaves">
+            <summary>
+            Returns all leaves on the tree
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bio.Web.Selectome.SelectomeTree.AllNodes">
+            <summary>
+            All nodes in the tree
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Bio.Web.Selectome.SelectomeTree.GetFeatureFromNodes``1(System.Func{Bio.Web.Selectome.SelectomeTreeNode,``0})">
+            <summary>
+            Apply the function selector to all nodes in the tree
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="function"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTree.Name">
+            <summary>
+            The name of the tree.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTree.IsRoot">
+            <summary>
+            Either node is root node or not
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTree.Root">
+            <summary>
+            The root of the tree.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTree.TaxaPresent">
+            <summary>
+            All TaxaShortName fields from the leaves
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTree.TaxaInformation">
+            <summary>
+            All TaxaShortName fields from the leaves
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTree.SelectedNodes">
+            <summary>
+            Retrieve any nodes from the tree that show selection
+            </summary>
+        </member>
+        <member name="T:Bio.Web.Selectome.SelectomeTreeNode">
+            <summary>
+            A Selectome tree node is a normal node with additional abilities to get
+            metadata relevant to selectome.
+            </summary>
+        </member>
+        <member name="F:Bio.Web.Selectome.SelectomeTreeNode.children">
+            <summary>
+            A new dictionary of children that hides the old ones
+            </summary>
+        </member>
+        <member name="M:Bio.Web.Selectome.SelectomeTreeNode.#ctor(Bio.Phylogenetics.Node)">
+            <summary>
+            Create a new node from the initial node, recursively changing things.
+            </summary>
+            <param name="initialNode">The node found from the newick parser</param>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTreeNode.Name">
+            <summary>
+            The name of the tree node.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTreeNode.MetaData">
+            <summary>
+            The metadata for the string
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTreeNode.Children">
+            <summary>
+            Get Children nodes
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTreeNode.IsRoot">
+            <summary>
+            Either node is root node or not
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTreeNode.IsLeaf">
+            <summary>
+            Either node is leaf or not
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTreeNode.Selected">
+            <summary>
+            Is the branch selected?
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTreeNode.AncestorSelected">
+            <summary>
+            Is an ancestral branch selected
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTreeNode.BootStrap">
+            <summary>
+            The bootstrap value on the tree.
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTreeNode.TaxID">
+            <summary>
+            The NCBI taxonomic ID
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTreeNode.PValue">
+            <summary>
+            P-Value
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTreeNode.GeneName">
+            <summary>
+            The ensembl id of the gene
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTreeNode.GeneID">
+            <summary>
+            The ensembl id of the gene
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTreeNode.TaxaShortName">
+            <summary>
+            The short name for the taxa
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTreeNode.Duplication">
+            <summary>
+            Is a duplication inferred?
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTreeNode.TranscriptID">
+            <summary>
+            The transcript ID
+            </summary>
+        </member>
+        <member name="P:Bio.Web.Selectome.SelectomeTreeNode.ProteinID">
+            <summary>
+            The protein ID
+            </summary>
+        </member>
+    </members>
+</doc>

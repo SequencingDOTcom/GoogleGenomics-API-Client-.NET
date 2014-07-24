@@ -1,0 +1,1953 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Google.Apis.Genomics.v1beta</name>
+    </assembly>
+    <members>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.Beacon">
+            <summary>A beacon represents whether any variant call in a dataset has a specific allele at a particular
+            position.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Beacon.Exists">
+            <summary>True if the allele exists on any variant call, false otherwise.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Beacon.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.Call">
+            <summary>A Call represents the determination of genotype with respect to a particular variant. It may include
+            associated information such as quality and phasing. For example, a Call might assign a probability of 0.32 to
+            the occurrence of a SNP named rs1234 in a callset with the name NA12345.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Call.CallsetId">
+            <summary>The ID of the callset this variant call belongs to.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Call.CallsetName">
+            <summary>The name of the callset this variant call belongs to.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Call.Genotype">
+            <summary>The genotype of this variant call. Each value represents either the value of the referenceBases
+            field or a 1-based index into alternateBases. If a variant had a referenceBases field of "T" and an
+            alternateBases value of ["A", "C"], and the genotype was [2, 1], that would mean the call represented the
+            heterozygous value "CA" for this variant. If the genotype was instead [0, 1], the represented value would be
+            "TA". Ordering of the genotype values is important if the phaseset field is present. If a genotype is not
+            called (that is, a "." is present in the GT string,) -1 is returned.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Call.GenotypeLikelihood">
+            <summary>The genotype likelihoods for this variant call. Each array entry represents how likely a specific
+            genotype is for this call. The value ordering is defined by the GL tag in the VCF spec.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Call.Info">
+            <summary>A map of additional variant call information.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Call.Phaseset">
+            <summary>If this field is present, this variant call's genotype ordering implies the phase of the bases and
+            is consistent with any other variant calls on the same contig which have the same phaseset value. When
+            importing data from VCF, if the genotype data was phased, but no phase set was specified this field will be
+            set to "DEFAULT_PHASESET".</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Call.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.Callset">
+            <summary>A Callset is a collection of Variant Calls. It belongs to a Dataset.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Callset.Created">
+            <summary>The date this callset was created in milliseconds from the epoch.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Callset.DatasetId">
+            <summary>The ID of the dataset this callset belongs to.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Callset.Id">
+            <summary>The Google generated ID of the callset, immutable.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Callset.Info">
+            <summary>A map of additional callset information.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Callset.Name">
+            <summary>The callset name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Callset.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.ContigBound">
+            <summary>ContigBound records an upper bound for the starting coordinate of variants in a particular
+            contig.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ContigBound.Contig">
+            <summary>The contig the bound is associate with.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ContigBound.UpperBound">
+            <summary>An upper bound (inclusive) on the starting coordinate of any variant in the contig.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ContigBound.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.Dataset">
+            <summary>A Dataset is a collection of genomic data.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Dataset.Id">
+            <summary>The Google generated ID of the dataset, immutable.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Dataset.IsPublic">
+            <summary>Flag indicating whether or not a dataset is publicly viewable. If a dataset is not public, it
+            inherits viewing permissions from its project.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Dataset.Name">
+            <summary>The dataset name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Dataset.ProjectId">
+            <summary>The Google Developers Console project number that this dataset belongs to.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Dataset.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.ExperimentalCreateJobRequest">
+            <summary>The job creation request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExperimentalCreateJobRequest.Align">
+            <summary>Specifies whether or not to run the alignment pipeline. At least one of align or call_variants must
+            be provided.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExperimentalCreateJobRequest.CallVariants">
+            <summary>Specifies whether or not to run the variant calling pipeline. If specified, alignment will be
+            performed first and the aligned BAMs will passed as input to the variant caller. At least one of align or
+            call_variants must be provided.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExperimentalCreateJobRequest.GcsOutputPath">
+            <summary>Specifies where to copy the results of certain pipelines. This shoud be in the form of
+            "gs://bucket/path".</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExperimentalCreateJobRequest.PairedSourceUris">
+            <summary>A list of Google Cloud Storage URIs of paired end .fastq files to operate upon. If specified, this
+            represents the second file of each paired .fastq file. The first file of each pair should be specified in
+            "sourceUris".</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExperimentalCreateJobRequest.ProjectId">
+            <summary>Required. The Google Cloud Project ID with which to associate the request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExperimentalCreateJobRequest.SourceUris">
+            <summary>A list of Google Cloud Storage URIs of data files to operate upon. These can be .bam, interleaved
+            .fastq, or paired .fastq. If specifying paired .fastq files, the first of each pair of files should be
+            listed here, and the second of each pair should be listed in "pairedSourceUris".</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExperimentalCreateJobRequest.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.ExperimentalCreateJobResponse">
+            <summary>The job creation response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExperimentalCreateJobResponse.JobId">
+            <summary>A job ID that can be used to get status information.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExperimentalCreateJobResponse.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.ExportReadsetsRequest">
+            <summary>The readset export request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExportReadsetsRequest.ExportUri">
+            <summary>A Google Cloud Storage URI where the exported BAM file will be created. The currently authenticated
+            user must have write access to the new file location. An error will be returned if the URI already contains
+            data.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExportReadsetsRequest.ProjectId">
+            <summary>The Google Developers Console project number that owns this export. This is the project that will
+            be billed.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExportReadsetsRequest.ReadsetIds">
+            <summary>The IDs of the readsets to export.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExportReadsetsRequest.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.ExportReadsetsResponse">
+            <summary>The readset export response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExportReadsetsResponse.JobId">
+            <summary>A job ID that can be used to get status information.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExportReadsetsResponse.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.ExportVariantsRequest">
+            <summary>The variant data export request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExportVariantsRequest.BigqueryDataset">
+            <summary>The BigQuery dataset to export data to. Note that this is distinct from the Genomics concept of
+            "dataset". The caller must have WRITE access to this BigQuery dataset.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExportVariantsRequest.BigqueryTable">
+            <summary>The BigQuery table to export data to. The caller must have WRITE access to this BigQuery
+            table.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExportVariantsRequest.CallsetIds">
+            <summary>If provided, only variant call information from the specified callsets will be exported. By default
+            all variant calls are exported.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExportVariantsRequest.DatasetId">
+            <summary>Required. The ID of the dataset that contains variant data which should be exported. The caller
+            must have READ access to this dataset.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExportVariantsRequest.Format">
+            <summary>The format for the exported data.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExportVariantsRequest.ProjectId">
+            <summary>The Google Cloud project number that owns this export. This is the project that will be
+            billed.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExportVariantsRequest.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.ExportVariantsResponse">
+            <summary>The variant data export response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExportVariantsResponse.JobId">
+            <summary>A job ID that can be used to get status information.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ExportVariantsResponse.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.GetVariantsSummaryResponse">
+            <summary>The variants summary response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.GetVariantsSummaryResponse.ContigBounds">
+            <summary>A list of all contigs used by the variants in a dataset with associated coordinate upper bounds for
+            each one.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.GetVariantsSummaryResponse.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Header.SortingOrder">
+            <summary>(SO) Sorting order of alignments.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Header.Version">
+            <summary>(VN) BAM format version.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Header.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.HeaderSection">
+            <summary>The header section of the BAM/SAM file.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.HeaderSection.Comments">
+            <summary>(@CO) One-line text comments.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.HeaderSection.FileUri">
+            <summary>The file URI that this data was imported from.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.HeaderSection.Headers">
+            <summary>(@HD) The header line.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.HeaderSection.Programs">
+            <summary>(@PG) Programs.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.HeaderSection.ReadGroups">
+            <summary>(@RG) Read group.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.HeaderSection.RefSequences">
+            <summary>(@SQ) Reference sequence dictionary.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.HeaderSection.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.ImportReadsetsRequest">
+            <summary>The readset import request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ImportReadsetsRequest.DatasetId">
+            <summary>Required. The ID of the dataset these readsets will belong to. The caller must have WRITE
+            permissions to this dataset.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ImportReadsetsRequest.SourceUris">
+            <summary>A list of URIs pointing at BAM files in Google Cloud Storage.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ImportReadsetsRequest.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.ImportReadsetsResponse">
+            <summary>The readset import response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ImportReadsetsResponse.JobId">
+            <summary>A job ID that can be used to get status information.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ImportReadsetsResponse.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.ImportVariantsRequest">
+            <summary>The variant data import request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ImportVariantsRequest.DatasetId">
+            <summary>Required. The dataset to which variant data should be imported.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ImportVariantsRequest.SourceUris">
+            <summary>A list of URIs pointing at VCF files in Google Cloud Storage. See the VCF Specification for more
+            details on the input format.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ImportVariantsRequest.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.ImportVariantsResponse">
+            <summary>The variant data import response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ImportVariantsResponse.JobId">
+            <summary>A job ID that can be used to get status information.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ImportVariantsResponse.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.Job">
+            <summary>A Job represents an ongoing process that can be monitored for status information.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Job.Created">
+            <summary>The date this job was created, in milliseconds from the epoch.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Job.Description">
+            <summary>A more detailed description of this job's current status.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Job.Errors">
+            <summary>Any errors that occurred during processing.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Job.Id">
+            <summary>The job ID.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Job.ImportedIds">
+            <summary>If this Job represents an import, this field will contain the IDs of the objects that were
+            successfully imported.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Job.ProjectId">
+            <summary>The Google Developers Console project number to which this job belongs.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Job.Status">
+            <summary>The status of this job.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Job.Warnings">
+            <summary>Any warnings that occurred during processing.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Job.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.ListDatasetsResponse">
+            <summary>The dataset list response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ListDatasetsResponse.Datasets">
+            <summary>The list of matching Datasets.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ListDatasetsResponse.NextPageToken">
+            <summary>The continuation token, which is used to page through large result sets. Provide this value in a
+            subsequent request to return the next page of results. This field will be empty if there aren't any
+            additional results.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ListDatasetsResponse.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Program.CommandLine">
+            <summary>(CL) Command line.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Program.Id">
+            <summary>(ID) Program record identifier.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Program.Name">
+            <summary>(PN) Program name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Program.PrevProgramId">
+            <summary>(PP) Previous program ID.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Program.Version">
+            <summary>(VN) Program version.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Program.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.Read">
+            <summary>A Read is a group of bases that may or may not have been aligned to a reference. It contains quality
+            information and other metadata.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Read.AlignedBases">
+            <summary>The originalBases after the cigar field has been applied. Deletions are represented with '-' and
+            insertions are omitted.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Read.BaseQuality">
+            <summary>Represents the quality of each base in this read. Each character represents one base. To get the
+            quality, take the ASCII value of the character and subtract 33. (QUAL)</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Read.Cigar">
+            <summary>A condensed representation of how this read matches up to the reference. (CIGAR)</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Read.Flags">
+            <summary>Each bit of this number has a different meaning if enabled. See the full BAM spec for more details.
+            (FLAG)</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Read.Id">
+            <summary>The Google generated ID of the read, immutable.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Read.MappingQuality">
+            <summary>A score up to 255 that represents how likely this read's aligned position is to be correct. A
+            higher value is better. (MAPQ)</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Read.MatePosition">
+            <summary>The 1-based start position of the paired read. (PNEXT)</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Read.MateReferenceSequenceName">
+            <summary>The name of the sequence that the paired read is aligned to. This is usually the same as
+            referenceSequenceName. (RNEXT)</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Read.Name">
+            <summary>The name of the read. When imported from a BAM file, this is the query template name.
+            (QNAME)</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Read.OriginalBases">
+            <summary>The list of bases that this read represents (such as "CATCGA"). (SEQ)</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Read.Position">
+            <summary>The 1-based start position of the aligned read. If the first base starts at the very beginning of
+            the reference sequence, then the position would be '1'. (POS)</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Read.ReadsetId">
+            <summary>The ID of the readset this read belongs to.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Read.ReferenceSequenceName">
+            <summary>The name of the sequence that this read is aligned to. This would be, for example, 'X' for the X
+            Chromosome or '20' for Chromosome 20. (RNAME)</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Read.Tags">
+            <summary>A map of additional read information. (TAG)</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Read.TemplateLength">
+            <summary>Length of the original piece of DNA that produced both this read and the paired read.
+            (TLEN)</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Read.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReadGroup.Date">
+            <summary>(DT) Date the run was produced (ISO8601 date or date/time).</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReadGroup.Description">
+            <summary>(DS) Description.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReadGroup.FlowOrder">
+            <summary>(FO) Flow order. The array of nucleotide bases that correspond to the nucleotides used for each
+            flow of each read.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReadGroup.Id">
+            <summary>(ID) Read group identifier.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReadGroup.KeySequence">
+            <summary>(KS) The array of nucleotide bases that correspond to the key sequence of each read.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReadGroup.Library">
+            <summary>(LS) Library.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReadGroup.PlatformUnit">
+            <summary>(PU) Platform unit.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReadGroup.PredictedInsertSize">
+            <summary>(PI) Predicted median insert size.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReadGroup.ProcessingProgram">
+            <summary>(PG) Programs used for processing the read group.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReadGroup.Sample">
+            <summary>(SM) Sample.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReadGroup.SequencingCenterName">
+            <summary>(CN) Name of sequencing center producing the read.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReadGroup.SequencingTechnology">
+            <summary>(PL) Platform/technology used to produce the reads.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReadGroup.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.Readset">
+            <summary>A Readset is a collection of Reads.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Readset.Created">
+            <summary>The date this readset was created, in milliseconds from the epoch.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Readset.DatasetId">
+            <summary>The ID of the dataset this readset belongs to.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Readset.FileData">
+            <summary>File information from the original BAM import. See the BAM format specification for additional
+            information on each field.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Readset.Id">
+            <summary>The Google generated ID of the readset, immutable.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Readset.Name">
+            <summary>The readset name, typically this is the sample name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Readset.ReadCount">
+            <summary>The number of reads in this readset.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Readset.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReferenceSequence.AssemblyId">
+            <summary>(AS) Genome assembly identifier.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReferenceSequence.Length">
+            <summary>(LN) Reference sequence length.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReferenceSequence.Md5Checksum">
+            <summary>(M5) MD5 checksum of the sequence in the uppercase, excluding spaces but including pads as
+            *.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReferenceSequence.Name">
+            <summary>(SN) Reference sequence name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReferenceSequence.Species">
+            <summary>(SP) Species.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReferenceSequence.Uri">
+            <summary>(UR) URI of the sequence.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.ReferenceSequence.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.SearchCallsetsRequest">
+            <summary>The callset search request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchCallsetsRequest.DatasetIds">
+            <summary>Restrict the query to callsets within the given datasets. At least one ID must be
+            provided.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchCallsetsRequest.MaxResults">
+            <summary>The maximum number of callsets to return.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchCallsetsRequest.Name">
+            <summary>Only return callsets for which a substring of the name matches this string.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchCallsetsRequest.PageToken">
+            <summary>The continuation token, which is used to page through large result sets. To get the next page of
+            results, set this parameter to the value of "nextPageToken" from the previous response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchCallsetsRequest.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.SearchCallsetsResponse">
+            <summary>The callset search response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchCallsetsResponse.Callsets">
+            <summary>The list of matching callsets.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchCallsetsResponse.NextPageToken">
+            <summary>The continuation token, which is used to page through large result sets. Provide this value in a
+            subsequent request to return the next page of results. This field will be empty if there aren't any
+            additional results.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchCallsetsResponse.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.SearchJobsRequest">
+            <summary>The jobs search request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchJobsRequest.CreatedAfter">
+            <summary>If specified, only jobs created on or after this date, given in milliseconds since Unix epoch, will
+            be listed.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchJobsRequest.CreatedBefore">
+            <summary>If specified, only jobs created prior to this date, given in milliseconds since Unix epoch, will be
+            listed.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchJobsRequest.MaxResults">
+            <summary>Specifies the number of results to return in a single page. If unspecified, it will default to 128.
+            The maximum value is 256.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchJobsRequest.PageToken">
+            <summary>The continuation token which is used to page through large result sets. To get the next page of
+            results, set this parameter to the value of the "nextPageToken" from the previous response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchJobsRequest.ProjectId">
+            <summary>The Google Developers Console project number to which the jobs belong.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchJobsRequest.Status">
+            <summary>An optional list of Status values to filter the listing.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchJobsRequest.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.SearchJobsResponse">
+            <summary>The job search response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchJobsResponse.Jobs">
+            <summary>The list of jobs results, ordered newest to oldest.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchJobsResponse.NextPageToken">
+            <summary>The continuation token which is used to page through large result sets. Provide this value is a
+            subsequent request to return the next page of results. This field will be empty if there are no more
+            results.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchJobsResponse.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.SearchReadsRequest">
+            <summary>The read search request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsRequest.MaxResults">
+            <summary>Specifies number of results to return in a single page. If unspecified, it will default to 256. The
+            maximum value is 1024.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsRequest.PageToken">
+            <summary>The continuation token, which is used to page through large result sets. To get the next page of
+            results, set this parameter to the value of "nextPageToken" from the previous response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsRequest.ReadsetIds">
+            <summary>The readsets within which to search for reads. At least one readset ID must be provided. All
+            specified readsets must be aligned against a common set of reference sequences; this defines the genomic
+            coordinates for the query.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsRequest.SequenceEnd">
+            <summary>The end position (1-based, inclusive) of the target range. If specified, "sequenceName" must also
+            be specified. Defaults to the end of the target reference sequence, if any.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsRequest.SequenceName">
+            <summary>Restricts the results to a particular reference sequence such as '1', 'chr1', or 'X'. The set of
+            valid references sequences depends on the readsets specified. If set to "", only unmapped Reads are
+            returned.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsRequest.SequenceStart">
+            <summary>The start position (1-based, inclusive) of the target range. If specified, "sequenceName" must also
+            be specified. Defaults to the start of the target reference sequence, if any.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsRequest.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.SearchReadsResponse">
+            <summary>The read search response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsResponse.NextPageToken">
+            <summary>The continuation token, which is used to page through large result sets. Provide this value in a
+            subsequent request to return the next page of results. This field will be empty if there aren't any
+            additional results.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsResponse.Reads">
+            <summary>The list of matching Reads. The resulting Reads are sorted by position; the smallest positions are
+            returned first. Unmapped reads, which have no position, are returned last and are further sorted
+            alphabetically by name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsResponse.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.SearchReadsetsRequest">
+            <summary>The readset search request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsetsRequest.DatasetIds">
+            <summary>Restricts this query to readsets within the given datasets. At least one ID must be
+            provided.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsetsRequest.MaxResults">
+            <summary>Specifies number of results to return in a single page. If unspecified, it will default to 128. The
+            maximum value is 256.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsetsRequest.Name">
+            <summary>Only return readsets for which a substring of the name matches this string.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsetsRequest.PageToken">
+            <summary>The continuation token, which is used to page through large result sets. To get the next page of
+            results, set this parameter to the value of "nextPageToken" from the previous response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsetsRequest.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.SearchReadsetsResponse">
+            <summary>The readset search response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsetsResponse.NextPageToken">
+            <summary>The continuation token, which is used to page through large result sets. Provide this value in a
+            subsequent request to return the next page of results. This field will be empty if there aren't any
+            additional results.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsetsResponse.Readsets">
+            <summary>The list of matching Readsets.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchReadsetsResponse.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.SearchVariantsRequest">
+            <summary>The variant search request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchVariantsRequest.CallsetIds">
+            <summary>Only return variant calls which belong to callsets with these ids. Leaving this blank returns all
+            variant calls. At most one of callsetNames or callsetIds should be provided.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchVariantsRequest.CallsetNames">
+            <summary>Only return variant calls which belong to callsets which have exactly these names. Leaving this
+            blank returns all variant calls. At most one of callsetNames or callsetIds should be provided.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchVariantsRequest.Contig">
+            <summary>Required. Only return variants on this contig.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchVariantsRequest.DatasetId">
+            <summary>Required. The ID of the dataset to search.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchVariantsRequest.EndPosition">
+            <summary>Required. The end of the window (1-based, inclusive) for which overlapping variants should be
+            returned.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchVariantsRequest.MaxResults">
+            <summary>The maximum number of variants to return.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchVariantsRequest.PageToken">
+            <summary>The continuation token, which is used to page through large result sets. To get the next page of
+            results, set this parameter to the value of "nextPageToken" from the previous response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchVariantsRequest.StartPosition">
+            <summary>Required. The beginning of the window (1-based, inclusive) for which overlapping variants should be
+            returned.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchVariantsRequest.VariantName">
+            <summary>Only return variants which have exactly this name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchVariantsRequest.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.SearchVariantsResponse">
+            <summary>The variant search response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchVariantsResponse.NextPageToken">
+            <summary>The continuation token, which is used to page through large result sets. Provide this value in a
+            subsequent request to return the next page of results. This field will be empty if there aren't any
+            additional results.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchVariantsResponse.Variants">
+            <summary>The list of matching Variants.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.SearchVariantsResponse.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.Data.Variant">
+            <summary>A Variant represents a change in DNA sequence relative to some reference. For example, a Variant could
+            represent a SNP or an insertion. Variants belong to a Dataset.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Variant.AlternateBases">
+            <summary>The bases that appear instead of the reference bases.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Variant.Calls">
+            <summary>The variant calls for this particular variant. Each one represents the determination of genotype
+            with respect to this variant.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Variant.Contig">
+            <summary>The contig on which this variant occurs. (such as 'chr20' or 'X')</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Variant.Created">
+            <summary>The date this variant was created, in milliseconds from the epoch.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Variant.DatasetId">
+            <summary>The ID of the dataset this variant belongs to.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Variant.Id">
+            <summary>The Google generated ID of the variant, immutable.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Variant.Info">
+            <summary>A map of additional variant information.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Variant.Names">
+            <summary>Names for the variant, for example a RefSNP ID.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Variant.Position">
+            <summary>The position at which this variant occurs (1-based). This corresponds to the first base of the
+            string of reference bases.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Variant.ReferenceBases">
+            <summary>The reference bases for this variant. They start at the given position.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.Data.Variant.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.GenomicsService">
+            <summary>The Genomics Service.</summary>
+        </member>
+        <member name="F:Google.Apis.Genomics.v1beta.GenomicsService.Version">
+            <summary>The API version.</summary>
+        </member>
+        <member name="F:Google.Apis.Genomics.v1beta.GenomicsService.DiscoveryVersionUsed">
+            <summary>The discovery version used to generate this service.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.GenomicsService.#ctor">
+            <summary>Constructs a new service.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.GenomicsService.#ctor(Google.Apis.Services.BaseClientService.Initializer)">
+            <summary>Constructs a new service.</summary>
+            <param name="initializer">The service initializer.</param>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsService.Features">
+            <summary>Gets the service supported features.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsService.Name">
+            <summary>Gets the service name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsService.BaseUri">
+            <summary>Gets the service base URI.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsService.BasePath">
+            <summary>Gets the service base path.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsService.Beacons">
+            <summary>Gets the Beacons resource.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsService.Callsets">
+            <summary>Gets the Callsets resource.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsService.Datasets">
+            <summary>Gets the Datasets resource.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsService.Experimental">
+            <summary>Gets the Experimental resource.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsService.Jobs">
+            <summary>Gets the Jobs resource.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsService.Reads">
+            <summary>Gets the Reads resource.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsService.Readsets">
+            <summary>Gets the Readsets resource.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsService.Variants">
+            <summary>Gets the Variants resource.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.GenomicsService.Scope">
+            <summary>Available OAuth 2.0 scopes for use with the Genomics API.</summary>
+        </member>
+        <member name="F:Google.Apis.Genomics.v1beta.GenomicsService.Scope.Bigquery">
+            <summary>View and manage your data in Google BigQuery</summary>
+        </member>
+        <member name="F:Google.Apis.Genomics.v1beta.GenomicsService.Scope.DevstorageReadWrite">
+            <summary>Manage your data in Google Cloud Storage</summary>
+        </member>
+        <member name="F:Google.Apis.Genomics.v1beta.GenomicsService.Scope.Genomics">
+            <summary>View and manage Genomics data</summary>
+        </member>
+        <member name="F:Google.Apis.Genomics.v1beta.GenomicsService.Scope.GenomicsReadonly">
+            <summary>View Genomics data</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.GenomicsBaseServiceRequest`1">
+            <summary>A base abstract class for Genomics requests.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.GenomicsBaseServiceRequest`1.#ctor(Google.Apis.Services.IClientService)">
+            <summary>Constructs a new GenomicsBaseServiceRequest instance.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.GenomicsBaseServiceRequest`1.InitParameters">
+            <summary>Initializes Genomics parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsBaseServiceRequest`1.Alt">
+            <summary>Data format for the response.</summary>
+            [default: json]
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsBaseServiceRequest`1.Fields">
+            <summary>Selector specifying which fields to include in a partial response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsBaseServiceRequest`1.Key">
+            <summary>API key. Your API key identifies your project and provides you with API access, quota, and reports.
+            Required unless you provide an OAuth 2.0 token.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsBaseServiceRequest`1.OauthToken">
+            <summary>OAuth 2.0 token for the current user.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsBaseServiceRequest`1.PrettyPrint">
+            <summary>Returns response with indentations and line breaks.</summary>
+            [default: true]
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsBaseServiceRequest`1.QuotaUser">
+            <summary>Available to use for quota purposes for server-side applications. Can be any arbitrary string
+            assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.GenomicsBaseServiceRequest`1.UserIp">
+            <summary>IP address of the site where the request originates. Use this if you want to enforce per-user
+            limits.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.GenomicsBaseServiceRequest`1.AltEnum">
+            <summary>Data format for the response.</summary>
+        </member>
+        <member name="F:Google.Apis.Genomics.v1beta.GenomicsBaseServiceRequest`1.AltEnum.Json">
+            <summary>Responses with Content-Type of application/json</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.BeaconsResource">
+            <summary>The "beacons" collection of methods.</summary>
+        </member>
+        <member name="F:Google.Apis.Genomics.v1beta.BeaconsResource.service">
+            <summary> The service whih this resource is belong to.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.BeaconsResource.#ctor(Google.Apis.Services.IClientService)">
+            <summary>Constructs a new resource.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.BeaconsResource.Get(System.String)">
+            <summary>This is an experimental API that provides a Global Alliance for Genomics and Health Beacon. It may
+            change at any time.</summary>
+            <param name="datasetId">The ID of the dataset to query over. It must be public. Private datasets will return an
+            unauthorized exception.</param>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.BeaconsResource.GetRequest">
+            <summary>This is an experimental API that provides a Global Alliance for Genomics and Health Beacon. It may
+            change at any time.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.BeaconsResource.GetRequest.#ctor(Google.Apis.Services.IClientService,System.String)">
+            <summary>Constructs a new Get request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.BeaconsResource.GetRequest.InitParameters">
+            <summary>Initializes Get parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.BeaconsResource.GetRequest.DatasetId">
+            <summary>The ID of the dataset to query over. It must be public. Private datasets will return an
+            unauthorized exception.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.BeaconsResource.GetRequest.Allele">
+            <summary>Required. The allele to look for ('A', 'C', 'G' or 'T').</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.BeaconsResource.GetRequest.Contig">
+            <summary>Required. The contig to query over.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.BeaconsResource.GetRequest.Position">
+            <summary>Required. The 1-based position to query at.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.BeaconsResource.GetRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.BeaconsResource.GetRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.BeaconsResource.GetRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.CallsetsResource">
+            <summary>The "callsets" collection of methods.</summary>
+        </member>
+        <member name="F:Google.Apis.Genomics.v1beta.CallsetsResource.service">
+            <summary> The service whih this resource is belong to.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.#ctor(Google.Apis.Services.IClientService)">
+            <summary>Constructs a new resource.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.Create(Google.Apis.Genomics.v1beta.Data.Callset)">
+            <summary>Creates a new callset.</summary>
+            <param name="body">The body of the request.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.Delete(System.String)">
+            <summary>Deletes a callset.</summary>
+            <param name="callsetId">The ID of the callset to be deleted.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.Get(System.String)">
+            <summary>Gets a callset by ID.</summary>
+            <param name="callsetId">The ID of the callset.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.Patch(Google.Apis.Genomics.v1beta.Data.Callset,System.String)">
+            <summary>Updates a callset. This method supports patch semantics.</summary>
+            <param name="body">The body of the request.</param>
+            <param name="callsetId">The ID of the callset to be updated.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.Search(Google.Apis.Genomics.v1beta.Data.SearchCallsetsRequest)">
+            <summary>Gets a list of callsets matching the criteria.</summary>
+            <param name="body">The body of the request.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.Update(Google.Apis.Genomics.v1beta.Data.Callset,System.String)">
+            <summary>Updates a callset.</summary>
+            <param name="body">The body of the request.</param>
+            <param name="callsetId">The ID of the callset to be updated.</param>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.CallsetsResource.CreateRequest">
+            <summary>Creates a new callset.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.CreateRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.Callset)">
+            <summary>Constructs a new Create request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.CreateRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.CreateRequest.InitParameters">
+            <summary>Initializes Create parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.CreateRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.CreateRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.CreateRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.CreateRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.CallsetsResource.DeleteRequest">
+            <summary>Deletes a callset.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.DeleteRequest.#ctor(Google.Apis.Services.IClientService,System.String)">
+            <summary>Constructs a new Delete request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.DeleteRequest.InitParameters">
+            <summary>Initializes Delete parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.DeleteRequest.CallsetId">
+            <summary>The ID of the callset to be deleted.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.DeleteRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.DeleteRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.DeleteRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.CallsetsResource.GetRequest">
+            <summary>Gets a callset by ID.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.GetRequest.#ctor(Google.Apis.Services.IClientService,System.String)">
+            <summary>Constructs a new Get request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.GetRequest.InitParameters">
+            <summary>Initializes Get parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.GetRequest.CallsetId">
+            <summary>The ID of the callset.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.GetRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.GetRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.GetRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.CallsetsResource.PatchRequest">
+            <summary>Updates a callset. This method supports patch semantics.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.PatchRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.Callset,System.String)">
+            <summary>Constructs a new Patch request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.PatchRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.PatchRequest.InitParameters">
+            <summary>Initializes Patch parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.PatchRequest.CallsetId">
+            <summary>The ID of the callset to be updated.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.PatchRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.PatchRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.PatchRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.PatchRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.CallsetsResource.SearchRequest">
+            <summary>Gets a list of callsets matching the criteria.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.SearchRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.SearchCallsetsRequest)">
+            <summary>Constructs a new Search request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.SearchRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.SearchRequest.InitParameters">
+            <summary>Initializes Search parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.SearchRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.SearchRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.SearchRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.SearchRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.CallsetsResource.UpdateRequest">
+            <summary>Updates a callset.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.UpdateRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.Callset,System.String)">
+            <summary>Constructs a new Update request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.UpdateRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.CallsetsResource.UpdateRequest.InitParameters">
+            <summary>Initializes Update parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.UpdateRequest.CallsetId">
+            <summary>The ID of the callset to be updated.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.UpdateRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.UpdateRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.UpdateRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.CallsetsResource.UpdateRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.DatasetsResource">
+            <summary>The "datasets" collection of methods.</summary>
+        </member>
+        <member name="F:Google.Apis.Genomics.v1beta.DatasetsResource.service">
+            <summary> The service whih this resource is belong to.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.#ctor(Google.Apis.Services.IClientService)">
+            <summary>Constructs a new resource.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.Create(Google.Apis.Genomics.v1beta.Data.Dataset)">
+            <summary>Creates a new dataset.</summary>
+            <param name="body">The body of the request.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.Delete(System.String)">
+            <summary>Deletes a dataset.</summary>
+            <param name="datasetId">The ID of the dataset to be deleted.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.Get(System.String)">
+            <summary>Gets a dataset by ID.</summary>
+            <param name="datasetId">The ID of the dataset.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.List">
+            <summary>Lists all datasets.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.Patch(Google.Apis.Genomics.v1beta.Data.Dataset,System.String)">
+            <summary>Updates a dataset. This method supports patch semantics.</summary>
+            <param name="body">The body of the request.</param>
+            <param name="datasetId">The ID of the dataset to be updated.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.Update(Google.Apis.Genomics.v1beta.Data.Dataset,System.String)">
+            <summary>Updates a dataset.</summary>
+            <param name="body">The body of the request.</param>
+            <param name="datasetId">The ID of the dataset to be updated.</param>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.DatasetsResource.CreateRequest">
+            <summary>Creates a new dataset.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.CreateRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.Dataset)">
+            <summary>Constructs a new Create request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.CreateRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.CreateRequest.InitParameters">
+            <summary>Initializes Create parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.CreateRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.CreateRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.CreateRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.CreateRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.DatasetsResource.DeleteRequest">
+            <summary>Deletes a dataset.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.DeleteRequest.#ctor(Google.Apis.Services.IClientService,System.String)">
+            <summary>Constructs a new Delete request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.DeleteRequest.InitParameters">
+            <summary>Initializes Delete parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.DeleteRequest.DatasetId">
+            <summary>The ID of the dataset to be deleted.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.DeleteRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.DeleteRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.DeleteRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.DatasetsResource.GetRequest">
+            <summary>Gets a dataset by ID.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.GetRequest.#ctor(Google.Apis.Services.IClientService,System.String)">
+            <summary>Constructs a new Get request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.GetRequest.InitParameters">
+            <summary>Initializes Get parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.GetRequest.DatasetId">
+            <summary>The ID of the dataset.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.GetRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.GetRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.GetRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.DatasetsResource.ListRequest">
+            <summary>Lists all datasets.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.ListRequest.#ctor(Google.Apis.Services.IClientService)">
+            <summary>Constructs a new List request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.ListRequest.InitParameters">
+            <summary>Initializes List parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.ListRequest.PageToken">
+            <summary>The continuation token, which is used to page through large result sets. To get the next page
+            of results, set this parameter to the value of "nextPageToken" from the previous response.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.ListRequest.MaxResults">
+            <summary>The maximum number of results returned by this request.</summary>
+            [default: 50]
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.ListRequest.ProjectId">
+            <summary>Only return datasets which belong to this Google Developers Console project.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.ListRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.ListRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.ListRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.DatasetsResource.PatchRequest">
+            <summary>Updates a dataset. This method supports patch semantics.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.PatchRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.Dataset,System.String)">
+            <summary>Constructs a new Patch request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.PatchRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.PatchRequest.InitParameters">
+            <summary>Initializes Patch parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.PatchRequest.DatasetId">
+            <summary>The ID of the dataset to be updated.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.PatchRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.PatchRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.PatchRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.PatchRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.DatasetsResource.UpdateRequest">
+            <summary>Updates a dataset.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.UpdateRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.Dataset,System.String)">
+            <summary>Constructs a new Update request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.UpdateRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.DatasetsResource.UpdateRequest.InitParameters">
+            <summary>Initializes Update parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.UpdateRequest.DatasetId">
+            <summary>The ID of the dataset to be updated.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.UpdateRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.UpdateRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.UpdateRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.DatasetsResource.UpdateRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.ExperimentalResource">
+            <summary>The "experimental" collection of methods.</summary>
+        </member>
+        <member name="F:Google.Apis.Genomics.v1beta.ExperimentalResource.service">
+            <summary> The service whih this resource is belong to.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ExperimentalResource.#ctor(Google.Apis.Services.IClientService)">
+            <summary>Constructs a new resource.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ExperimentalResource.Jobs">
+            <summary>Gets the Jobs resource.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.ExperimentalResource.JobsResource">
+            <summary>The "jobs" collection of methods.</summary>
+        </member>
+        <member name="F:Google.Apis.Genomics.v1beta.ExperimentalResource.JobsResource.service">
+            <summary> The service whih this resource is belong to.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ExperimentalResource.JobsResource.#ctor(Google.Apis.Services.IClientService)">
+            <summary>Constructs a new resource.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ExperimentalResource.JobsResource.Create(Google.Apis.Genomics.v1beta.Data.ExperimentalCreateJobRequest)">
+            <summary>Creates and asynchronously runs an ad-hoc job. This is an experimental call and may be removed
+            or changed at any time.</summary>
+            <param name="body">The body of the request.</param>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.ExperimentalResource.JobsResource.CreateRequest">
+            <summary>Creates and asynchronously runs an ad-hoc job. This is an experimental call and may be removed
+            or changed at any time.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ExperimentalResource.JobsResource.CreateRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.ExperimentalCreateJobRequest)">
+            <summary>Constructs a new Create request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ExperimentalResource.JobsResource.CreateRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ExperimentalResource.JobsResource.CreateRequest.InitParameters">
+            <summary>Initializes Create parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ExperimentalResource.JobsResource.CreateRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ExperimentalResource.JobsResource.CreateRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ExperimentalResource.JobsResource.CreateRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ExperimentalResource.JobsResource.CreateRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.JobsResource">
+            <summary>The "jobs" collection of methods.</summary>
+        </member>
+        <member name="F:Google.Apis.Genomics.v1beta.JobsResource.service">
+            <summary> The service whih this resource is belong to.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.JobsResource.#ctor(Google.Apis.Services.IClientService)">
+            <summary>Constructs a new resource.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.JobsResource.Get(System.String)">
+            <summary>Gets a job by ID.</summary>
+            <param name="jobId">The ID of the job.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.JobsResource.Search(Google.Apis.Genomics.v1beta.Data.SearchJobsRequest)">
+            <summary>Searches jobs within a project.</summary>
+            <param name="body">The body of the request.</param>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.JobsResource.GetRequest">
+            <summary>Gets a job by ID.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.JobsResource.GetRequest.#ctor(Google.Apis.Services.IClientService,System.String)">
+            <summary>Constructs a new Get request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.JobsResource.GetRequest.InitParameters">
+            <summary>Initializes Get parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.JobsResource.GetRequest.JobId">
+            <summary>The ID of the job.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.JobsResource.GetRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.JobsResource.GetRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.JobsResource.GetRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.JobsResource.SearchRequest">
+            <summary>Searches jobs within a project.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.JobsResource.SearchRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.SearchJobsRequest)">
+            <summary>Constructs a new Search request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.JobsResource.SearchRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.JobsResource.SearchRequest.InitParameters">
+            <summary>Initializes Search parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.JobsResource.SearchRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.JobsResource.SearchRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.JobsResource.SearchRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.JobsResource.SearchRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.ReadsResource">
+            <summary>The "reads" collection of methods.</summary>
+        </member>
+        <member name="F:Google.Apis.Genomics.v1beta.ReadsResource.service">
+            <summary> The service whih this resource is belong to.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsResource.#ctor(Google.Apis.Services.IClientService)">
+            <summary>Constructs a new resource.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsResource.Get(System.String)">
+            <summary>Gets a read by ID.</summary>
+            <param name="readId">The ID of the read.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Google.Apis.Genomics.v1beta.ReadsResource.Search(Google.Apis.Genomics.v1beta.Data.SearchReadsRequest)" -->
+        <member name="T:Google.Apis.Genomics.v1beta.ReadsResource.GetRequest">
+            <summary>Gets a read by ID.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsResource.GetRequest.#ctor(Google.Apis.Services.IClientService,System.String)">
+            <summary>Constructs a new Get request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsResource.GetRequest.InitParameters">
+            <summary>Initializes Get parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsResource.GetRequest.ReadId">
+            <summary>The ID of the read.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsResource.GetRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsResource.GetRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsResource.GetRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Google.Apis.Genomics.v1beta.ReadsResource.SearchRequest" -->
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsResource.SearchRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.SearchReadsRequest)">
+            <summary>Constructs a new Search request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsResource.SearchRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsResource.SearchRequest.InitParameters">
+            <summary>Initializes Search parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsResource.SearchRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsResource.SearchRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsResource.SearchRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsResource.SearchRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.ReadsetsResource">
+            <summary>The "readsets" collection of methods.</summary>
+        </member>
+        <member name="F:Google.Apis.Genomics.v1beta.ReadsetsResource.service">
+            <summary> The service whih this resource is belong to.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.#ctor(Google.Apis.Services.IClientService)">
+            <summary>Constructs a new resource.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.Create(Google.Apis.Genomics.v1beta.Data.Readset)">
+            <summary>Creates a new readset.</summary>
+            <param name="body">The body of the request.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.Delete(System.String)">
+            <summary>Deletes a readset.</summary>
+            <param name="readsetId">The ID of the readset to be deleted. The caller must have WRITE permissions to the dataset
+            associated with this readset.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.Export(Google.Apis.Genomics.v1beta.Data.ExportReadsetsRequest)">
+            <summary>Exports readsets to a BAM file in Google Cloud Storage. Note that currently there may be some
+            differences between exported BAM files and the original BAM file at the time of import. In particular,
+            comments in the input file header will not be preserved, and some custom tags will be converted to
+            strings.</summary>
+            <param name="body">The body of the request.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.Get(System.String)">
+            <summary>Gets a readset by ID.</summary>
+            <param name="readsetId">The ID of the readset.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.Import(Google.Apis.Genomics.v1beta.Data.ImportReadsetsRequest)">
+            <summary>Creates readsets by asynchronously importing the provided information. Note that currently comments
+            in the input file header are not imported and some custom tags will be converted to strings, rather than
+            preserving tag types. The caller must have WRITE permissions to the dataset.</summary>
+            <param name="body">The body of the request.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.Patch(Google.Apis.Genomics.v1beta.Data.Readset,System.String)">
+            <summary>Updates a readset. This method supports patch semantics.</summary>
+            <param name="body">The body of the request.</param>
+            <param name="readsetId">The ID of the readset to be updated.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.Search(Google.Apis.Genomics.v1beta.Data.SearchReadsetsRequest)">
+            <summary>Gets a list of readsets matching the criteria.</summary>
+            <param name="body">The body of the request.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.Update(Google.Apis.Genomics.v1beta.Data.Readset,System.String)">
+            <summary>Updates a readset.</summary>
+            <param name="body">The body of the request.</param>
+            <param name="readsetId">The ID of the readset to be updated.</param>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.ReadsetsResource.CreateRequest">
+            <summary>Creates a new readset.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.CreateRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.Readset)">
+            <summary>Constructs a new Create request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.CreateRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.CreateRequest.InitParameters">
+            <summary>Initializes Create parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.CreateRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.CreateRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.CreateRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.CreateRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.ReadsetsResource.DeleteRequest">
+            <summary>Deletes a readset.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.DeleteRequest.#ctor(Google.Apis.Services.IClientService,System.String)">
+            <summary>Constructs a new Delete request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.DeleteRequest.InitParameters">
+            <summary>Initializes Delete parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.DeleteRequest.ReadsetId">
+            <summary>The ID of the readset to be deleted. The caller must have WRITE permissions to the dataset
+            associated with this readset.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.DeleteRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.DeleteRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.DeleteRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.ReadsetsResource.ExportRequest">
+            <summary>Exports readsets to a BAM file in Google Cloud Storage. Note that currently there may be some
+            differences between exported BAM files and the original BAM file at the time of import. In particular,
+            comments in the input file header will not be preserved, and some custom tags will be converted to
+            strings.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.ExportRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.ExportReadsetsRequest)">
+            <summary>Constructs a new Export request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.ExportRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.ExportRequest.InitParameters">
+            <summary>Initializes Export parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.ExportRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.ExportRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.ExportRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.ExportRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.ReadsetsResource.GetRequest">
+            <summary>Gets a readset by ID.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.GetRequest.#ctor(Google.Apis.Services.IClientService,System.String)">
+            <summary>Constructs a new Get request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.GetRequest.InitParameters">
+            <summary>Initializes Get parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.GetRequest.ReadsetId">
+            <summary>The ID of the readset.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.GetRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.GetRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.GetRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.ReadsetsResource.ImportRequest">
+            <summary>Creates readsets by asynchronously importing the provided information. Note that currently comments
+            in the input file header are not imported and some custom tags will be converted to strings, rather than
+            preserving tag types. The caller must have WRITE permissions to the dataset.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.ImportRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.ImportReadsetsRequest)">
+            <summary>Constructs a new Import request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.ImportRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.ImportRequest.InitParameters">
+            <summary>Initializes Import parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.ImportRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.ImportRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.ImportRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.ImportRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.ReadsetsResource.PatchRequest">
+            <summary>Updates a readset. This method supports patch semantics.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.PatchRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.Readset,System.String)">
+            <summary>Constructs a new Patch request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.PatchRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.PatchRequest.InitParameters">
+            <summary>Initializes Patch parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.PatchRequest.ReadsetId">
+            <summary>The ID of the readset to be updated.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.PatchRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.PatchRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.PatchRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.PatchRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.ReadsetsResource.SearchRequest">
+            <summary>Gets a list of readsets matching the criteria.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.SearchRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.SearchReadsetsRequest)">
+            <summary>Constructs a new Search request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.SearchRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.SearchRequest.InitParameters">
+            <summary>Initializes Search parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.SearchRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.SearchRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.SearchRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.SearchRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.ReadsetsResource.UpdateRequest">
+            <summary>Updates a readset.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.UpdateRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.Readset,System.String)">
+            <summary>Constructs a new Update request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.UpdateRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.ReadsetsResource.UpdateRequest.InitParameters">
+            <summary>Initializes Update parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.UpdateRequest.ReadsetId">
+            <summary>The ID of the readset to be updated.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.UpdateRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.UpdateRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.UpdateRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.ReadsetsResource.UpdateRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.VariantsResource">
+            <summary>The "variants" collection of methods.</summary>
+        </member>
+        <member name="F:Google.Apis.Genomics.v1beta.VariantsResource.service">
+            <summary> The service whih this resource is belong to.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.#ctor(Google.Apis.Services.IClientService)">
+            <summary>Constructs a new resource.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.Create(Google.Apis.Genomics.v1beta.Data.Variant)">
+            <summary>Creates a new variant.</summary>
+            <param name="body">The body of the request.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.Delete(System.String)">
+            <summary>Deletes a variant.</summary>
+            <param name="variantId">The ID of the variant to be deleted.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.Export(Google.Apis.Genomics.v1beta.Data.ExportVariantsRequest)">
+            <summary>Exports variant data to an external destination.</summary>
+            <param name="body">The body of the request.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.Get(System.String)">
+            <summary>Gets a variant by ID.</summary>
+            <param name="variantId">The ID of the variant.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.GetSummary">
+            <summary>Gets a summary of all the variant data in a dataset.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.Import(Google.Apis.Genomics.v1beta.Data.ImportVariantsRequest)">
+            <summary>Creates variant data by asynchronously importing the provided information.</summary>
+            <param name="body">The body of the request.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.Patch(Google.Apis.Genomics.v1beta.Data.Variant,System.String)">
+            <summary>Updates a variant. This method supports patch semantics.</summary>
+            <param name="body">The body of the request.</param>
+            <param name="variantId">The ID of the variant to be updated..</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.Search(Google.Apis.Genomics.v1beta.Data.SearchVariantsRequest)">
+            <summary>Gets a list of variants matching the criteria.</summary>
+            <param name="body">The body of the request.</param>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.Update(Google.Apis.Genomics.v1beta.Data.Variant,System.String)">
+            <summary>Updates a variant.</summary>
+            <param name="body">The body of the request.</param>
+            <param name="variantId">The ID of the variant to be updated..</param>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.VariantsResource.CreateRequest">
+            <summary>Creates a new variant.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.CreateRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.Variant)">
+            <summary>Constructs a new Create request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.CreateRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.CreateRequest.InitParameters">
+            <summary>Initializes Create parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.CreateRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.CreateRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.CreateRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.CreateRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.VariantsResource.DeleteRequest">
+            <summary>Deletes a variant.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.DeleteRequest.#ctor(Google.Apis.Services.IClientService,System.String)">
+            <summary>Constructs a new Delete request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.DeleteRequest.InitParameters">
+            <summary>Initializes Delete parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.DeleteRequest.VariantId">
+            <summary>The ID of the variant to be deleted.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.DeleteRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.DeleteRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.DeleteRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.VariantsResource.ExportRequest">
+            <summary>Exports variant data to an external destination.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.ExportRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.ExportVariantsRequest)">
+            <summary>Constructs a new Export request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.ExportRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.ExportRequest.InitParameters">
+            <summary>Initializes Export parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.ExportRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.ExportRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.ExportRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.ExportRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.VariantsResource.GetRequest">
+            <summary>Gets a variant by ID.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.GetRequest.#ctor(Google.Apis.Services.IClientService,System.String)">
+            <summary>Constructs a new Get request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.GetRequest.InitParameters">
+            <summary>Initializes Get parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.GetRequest.VariantId">
+            <summary>The ID of the variant.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.GetRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.GetRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.GetRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.VariantsResource.GetSummaryRequest">
+            <summary>Gets a summary of all the variant data in a dataset.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.GetSummaryRequest.#ctor(Google.Apis.Services.IClientService)">
+            <summary>Constructs a new GetSummary request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.GetSummaryRequest.InitParameters">
+            <summary>Initializes GetSummary parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.GetSummaryRequest.DatasetId">
+            <summary>Required. The ID of the dataset to get variant summary information for.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.GetSummaryRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.GetSummaryRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.GetSummaryRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.VariantsResource.ImportRequest">
+            <summary>Creates variant data by asynchronously importing the provided information.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.ImportRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.ImportVariantsRequest)">
+            <summary>Constructs a new Import request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.ImportRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.ImportRequest.InitParameters">
+            <summary>Initializes Import parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.ImportRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.ImportRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.ImportRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.ImportRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.VariantsResource.PatchRequest">
+            <summary>Updates a variant. This method supports patch semantics.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.PatchRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.Variant,System.String)">
+            <summary>Constructs a new Patch request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.PatchRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.PatchRequest.InitParameters">
+            <summary>Initializes Patch parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.PatchRequest.VariantId">
+            <summary>The ID of the variant to be updated..</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.PatchRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.PatchRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.PatchRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.PatchRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.VariantsResource.SearchRequest">
+            <summary>Gets a list of variants matching the criteria.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.SearchRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.SearchVariantsRequest)">
+            <summary>Constructs a new Search request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.SearchRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.SearchRequest.InitParameters">
+            <summary>Initializes Search parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.SearchRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.SearchRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.SearchRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.SearchRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+        <member name="T:Google.Apis.Genomics.v1beta.VariantsResource.UpdateRequest">
+            <summary>Updates a variant.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.UpdateRequest.#ctor(Google.Apis.Services.IClientService,Google.Apis.Genomics.v1beta.Data.Variant,System.String)">
+            <summary>Constructs a new Update request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.UpdateRequest.GetBody">
+            <summary>Returns the body of the request.</summary>
+        </member>
+        <member name="M:Google.Apis.Genomics.v1beta.VariantsResource.UpdateRequest.InitParameters">
+            <summary>Initializes Update parameter list.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.UpdateRequest.VariantId">
+            <summary>The ID of the variant to be updated..</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.UpdateRequest.Body">
+            <summary>Gets or sets the body of this request.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.UpdateRequest.MethodName">
+            <summary>Gets the method name.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.UpdateRequest.HttpMethod">
+            <summary>Gets the HTTP method.</summary>
+        </member>
+        <member name="P:Google.Apis.Genomics.v1beta.VariantsResource.UpdateRequest.RestPath">
+            <summary>Gets the REST path.</summary>
+        </member>
+    </members>
+</doc>
