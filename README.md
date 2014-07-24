@@ -6,7 +6,7 @@ Provides a strong-typed .NET DLL for Google Genomics API queries in .NET Framewo
 ==============
 api-client-.NET open source project created with enthusiasm on July 24, 2014 by the 
 utterly adroit bioinformatics team at Sequencing LLC (www.sequencing.com)
-==============
+
 
 Getting started
 ---------------
