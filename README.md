@@ -43,7 +43,7 @@ Code layout
 
 •	Code is also structured to fully leverage the object oriented programming techniques.
 
-•	We have used JSON and other newer technologies where possible.
+•	JSON and other newer technologies have been used whenever possible.
 
 Project status
 ---------------
