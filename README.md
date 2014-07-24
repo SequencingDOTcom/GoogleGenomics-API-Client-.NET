@@ -15,7 +15,7 @@ This .NET client allows users to call the Google Genomics API using the string-t
 
 •	To use, please have Visual Studio or Web Matrix (which can be obtained free from http://www.microsoft.com/web/webmatrix/ installed.
 
-•	The download the project and open in either of the IDE as mentioned above.
+•	Download the project and open in either of the IDE as mentioned above.
 
 •	You may use the sample web project to familiarize yourself with the functionality.
 
