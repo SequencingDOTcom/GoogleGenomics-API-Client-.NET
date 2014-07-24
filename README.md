@@ -50,7 +50,7 @@ Project status
 
 •	Functionality to connect to and query Google Genomics is provided.
 
-•	This is an ongoing project. The bioinformatics team at Sequencing LLC<http://www.sequencing.com> will continue to add new code and we welcome the public to do the same.
+•	This is an ongoing project. The bioinformatics team at Sequencing LLC (<http://www.sequencing.com>) will continue to add new code and we welcome the public to do the same.
 
 Goals
 ---------------
