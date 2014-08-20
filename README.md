@@ -1,4 +1,4 @@
-GoogleGenomics-API-Client-.NET
+Google Genomics-API-Client-.NET
 ==============================
 
 Provides a strong-typed .NET DLL for Google Genomics API queries in .NET Framework (www.microsoft.com/net)
