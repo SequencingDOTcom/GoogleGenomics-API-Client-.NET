@@ -25,7 +25,7 @@ namespace Sequencing.Genomics.Web.Controllers
         {
             return new List<Dataset>
                    {
-                       new Dataset {Id = "376902546192", Name = "1000 Genomes"},
+                       new Dataset {Id = "10473108253681171589", Name = "1000 Genomes"},
                        new Dataset {Id = "383928317087", Name = "PGP"},
                        new Dataset {Id = "461916304629", Name = "Simons Foundation"},
                        new Dataset {Id = "337315832689", Name = "DREAM SMC Challenge"},
