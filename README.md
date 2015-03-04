@@ -12,7 +12,7 @@ Getting started
 
 This .NET client allows users to call the Google Genomics API using the string-type .NET DLL and also allow for deep embedding in your software development projects.
 
-•	To use, please have Visual Studio or Web Matrix (which can be obtained free from www.microsoft.com/web/webmatrix/) installed.
+•	To use, please have Visual Studio or [Web Matrix] (www.microsoft.com/web/webmatrix/) installed. Web Matrix is free.
 
 •	Download the project and open in either of the IDE as mentioned above.
 
