@@ -3,7 +3,8 @@ Google Genomics API Client for .NET
 
 Provides a strong-typed .NET DLL for Google Genomics API queries in [.NET Framework] (www.microsoft.com/net)
 
-==============
+==============================
+
 api-client-.NET open source project created with enthusiasm on July 24, 2014 by the utterly adroit bioinformatics team at [Sequencing.com] (https://sequencing.com)
 
 
