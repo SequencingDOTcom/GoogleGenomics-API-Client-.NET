@@ -1,11 +1,9 @@
 Google Genomics API Client for .NET
 ==============================
 
-Provides a strong-typed .NET DLL for Google Genomics API queries in [.NET Framework] (www.microsoft.com/net)
+Provides a strong-typed .NET DLL for Google Genomics API queries in [.NET Framework](www.microsoft.com/net)
 
-==============================
-
-api-client-.NET open source project created with enthusiasm on July 24, 2014 by the utterly adroit bioinformatics team at [Sequencing.com] (https://sequencing.com)
+This api-client-.NET open source project was created by the bioinformatics team at [Sequencing.com](https://sequencing.com)
 
 
 Getting started
@@ -13,7 +11,7 @@ Getting started
 
 This .NET client allows users to call the Google Genomics API using the string-type .NET DLL and also allow for deep embedding in your software development projects.
 
-•	To use, please have Visual Studio or [Web Matrix] (www.microsoft.com/web/webmatrix/) installed. Web Matrix is free.
+•	To use, please have Visual Studio or [Web Matrix](www.microsoft.com/web/webmatrix/) installed. Web Matrix is free.
 
 •	Download the project and open in either of the IDE as mentioned above.
 
@@ -50,7 +48,7 @@ Project status
 
 •	Functionality to connect to and query Google Genomics is provided.
 
-•	This is an ongoing project. The bioinformatics team at [Sequencing.com] (https://sequencing.com) will continue to add new code and we welcome the public to do the same.
+•	This is an ongoing project. The bioinformatics team at [Sequencing.com](https://sequencing.com) will continue to add new code and we welcome the public to do the same.
 
 Goals
 ---------------
@@ -71,4 +69,4 @@ Please file feature requests (or email us directly at gittaca@sequencing.com) fo
 Adding new functionality and to Learn More
 ---------------
 
-If you would like to see specific functionality added to this project or if you'd like to learn more about the other exciting projects at [Sequencing.com] (https://sequencing.com), please contact the Sequencing.com bioinformatics team by emailing gittaca@sequencing.com.
+If you would like to see specific functionality added to this project or if you'd like to learn more about the other exciting projects at [Sequencing.com](https://sequencing.com), please contact the Sequencing.com bioinformatics team by emailing gittaca@sequencing.com.
